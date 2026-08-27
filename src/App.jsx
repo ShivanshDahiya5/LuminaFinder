@@ -7,3 +7,11 @@ import FavoritesTab from './components/FavoritesTab'
 import MovieDetails from './components/MovieDetails'
 import BookDetails from './components/BookDetails'
 import { fetchUserFavorites, addFavoriteApi, removeFavoriteApi } from './services/api'
+
+
+function AppContent() {
+  const { user, token, openLoginModal, openRegisterModal, logout } = useAuth()
+
+  // Navigation / Router State
+  const [route, setRoute] = useState({ path: '/', params: {} })
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
