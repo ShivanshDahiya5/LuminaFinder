@@ -30,3 +30,11 @@ function AppContent() {
     setFavorites([])
     localStorage.removeItem('media-favorites')
   }
+
+  // Sync favorites with backend DB when logged in; clear them when logged out
+  useEffect(() => {
+    let active = true;
+    if (token) {
+      // Clear any local/guest favourites before loading the user's server copy
+      setFavorites([]);
+      localStorage.removeItem('media-favorites');
