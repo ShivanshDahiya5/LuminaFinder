@@ -38,3 +38,12 @@ function AppContent() {
       // Clear any local/guest favourites before loading the user's server copy
       setFavorites([]);
       localStorage.removeItem('media-favorites');
+
+      fetchUserFavorites(token)
+        .then((backendFavs) => {
+          if (active && Array.isArray(backendFavs)) {
+            setFavorites(backendFavs);
+            localStorage.setItem('media-favorites', JSON.stringify(backendFavs));
+          }
+        })
+        .catch((err) => console.error('Error fetching backend favorites:', err));
