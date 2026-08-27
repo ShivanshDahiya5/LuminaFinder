@@ -58,3 +58,9 @@ function AppContent() {
       active = false;
     };
   }, [token]);
+
+  useEffect(() => {
+    if (!token && favorites.length > 0) {
+      localStorage.setItem('media-favorites', JSON.stringify(favorites))
+    }
+  }, [favorites, token])
