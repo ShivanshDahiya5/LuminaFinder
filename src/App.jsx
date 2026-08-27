@@ -24,3 +24,9 @@ function AppContent() {
       return []
     }
   })
+
+   // Clear favorites state & storage (used on sign-out and before loading server copy)
+  const clearFavorites = () => {
+    setFavorites([])
+    localStorage.removeItem('media-favorites')
+  }
