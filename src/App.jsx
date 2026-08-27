@@ -47,3 +47,14 @@ function AppContent() {
           }
         })
         .catch((err) => console.error('Error fetching backend favorites:', err));
+        } else {
+      // Token was removed (sign-out) — wipe the favourites
+      if (active) {
+        setFavorites([]);
+        localStorage.removeItem('media-favorites');
+      }
+    }
+    return () => {
+      active = false;
+    };
+  }, [token]);
