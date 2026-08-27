@@ -71,3 +71,9 @@ function AppContent() {
     if (hash === '#/' || hash === '') {
       return { path: '/', params: {} }
     }
+    if (hash === '#/trending') {
+      return { path: '/trending', params: {} }
+    }
+    if (hash === '#/favorites') {
+      return { path: '/favorites', params: {} }
+    }
