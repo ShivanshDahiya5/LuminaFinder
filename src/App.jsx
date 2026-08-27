@@ -64,3 +64,10 @@ function AppContent() {
       localStorage.setItem('media-favorites', JSON.stringify(favorites))
     }
   }, [favorites, token])
+
+  const parseRoute = () => {
+    const hash = window.location.hash || '#/'
+    
+    if (hash === '#/' || hash === '') {
+      return { path: '/', params: {} }
+    }
