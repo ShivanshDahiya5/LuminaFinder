@@ -15,3 +15,12 @@ function AppContent() {
   // Navigation / Router State
   const [route, setRoute] = useState({ path: '/', params: {} })
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
+
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const saved = localStorage.getItem('media-favorites')
+      return saved ? JSON.parse(saved) : []
+    } catch {
+      return []
+    }
+  })
