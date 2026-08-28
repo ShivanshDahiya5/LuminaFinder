@@ -157,3 +157,10 @@ function AppContent() {
             removeFavorite={removeFavorite} 
           />
         )
+        case '/favorites':
+        return (
+          <FavoritesTab 
+            favorites={favorites} 
+            removeFavorite={removeFavorite} 
+          />
+        )
