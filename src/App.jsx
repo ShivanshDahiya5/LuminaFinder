@@ -173,3 +173,12 @@ function AppContent() {
             removeFavorite={removeFavorite} 
           />
         )
+        case '/book':
+        return (
+          <BookDetails 
+            id={route.params.id} 
+            isFavorite={isFavorite} 
+            addFavorite={addFavorite} 
+            removeFavorite={removeFavorite} 
+          />
+        )
