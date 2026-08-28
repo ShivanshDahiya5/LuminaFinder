@@ -109,3 +109,13 @@ function AppContent() {
     if (!favorites.some(f => String(f.id) === String(item.id) && f.type === item.type)) {
       const updated = [...favorites, item]
       setFavorites(updated)
+
+      if (token) {
+        try {
+          await addFavoriteApi(item, token)
+        } catch (e) {
+          console.error('Failed to sync favorite to DB:', e)
+        }
+      }
+    }
+  }
