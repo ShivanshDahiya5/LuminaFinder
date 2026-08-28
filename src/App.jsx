@@ -77,3 +77,9 @@ function AppContent() {
     if (hash === '#/favorites') {
       return { path: '/favorites', params: {} }
     }
+
+    // Match #/movie/:id
+    const movieMatch = hash.match(/^#\/movie\/([^/]+)$/)
+    if (movieMatch) {
+      return { path: '/movie', params: { id: movieMatch[1] } }
+    }
