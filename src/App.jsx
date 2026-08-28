@@ -148,3 +148,12 @@ function AppContent() {
             removeFavorite={removeFavorite} 
           />
         )
+        case '/trending':
+        return (
+          <SearchTab 
+            initialShowTrending={true}
+            isFavorite={isFavorite} 
+            addFavorite={addFavorite} 
+            removeFavorite={removeFavorite} 
+          />
+        )
