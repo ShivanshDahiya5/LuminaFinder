@@ -83,3 +83,12 @@ function AppContent() {
     if (movieMatch) {
       return { path: '/movie', params: { id: movieMatch[1] } }
     }
+
+    // Match #/book/:id
+    const bookMatch = hash.match(/^#\/book\/([^/]+)$/)
+    if (bookMatch) {
+      return { path: '/book', params: { id: bookMatch[1] } }
+    }
+
+    return { path: '/', params: {} } // fallback
+  }
