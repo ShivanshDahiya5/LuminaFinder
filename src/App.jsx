@@ -123,3 +123,12 @@ function AppContent() {
   const removeFavorite = async (id, type) => {
     const updated = favorites.filter(f => !(String(f.id) === String(id) && f.type === type))
     setFavorites(updated)
+
+    if (token) {
+      try {
+        await removeFavoriteApi(type, id, token)
+      } catch (e) {
+        console.error('Failed to remove favorite from DB:', e)
+      }
+    }
+  }
