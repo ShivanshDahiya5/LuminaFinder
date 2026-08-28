@@ -92,3 +92,14 @@ function AppContent() {
 
     return { path: '/', params: {} } // fallback
   }
+
+  // Handle hash change events
+  useEffect(() => {
+    const handleHashChange = () => {
+      setRoute(parseRoute())
+    }
+    
+  handleHashChange()
+  window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
