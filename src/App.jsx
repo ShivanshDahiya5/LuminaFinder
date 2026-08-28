@@ -187,3 +187,10 @@ function AppContent() {
           <div className="flex flex-col items-center justify-center py-20 text-slate-400">
             <h2 className="text-2xl font-bold mb-2">404 - Not Found</h2>
             <p className="mb-6">The page you are looking for does not exist.</p>
+            <a href="#/" className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium text-white hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
+              Return Home
+            </a>
+          </div>
+        )
+    }
+  }
