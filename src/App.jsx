@@ -103,3 +103,9 @@ function AppContent() {
   window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
+
+  // Helper functions to manage favorites
+  const addFavorite = async (item) => {
+    if (!favorites.some(f => String(f.id) === String(item.id) && f.type === item.type)) {
+      const updated = [...favorites, item]
+      setFavorites(updated)
