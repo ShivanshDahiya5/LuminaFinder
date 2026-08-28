@@ -136,3 +136,15 @@ function AppContent() {
   const isFavorite = (id, type) => {
     return favorites.some(f => String(f.id) === String(id) && f.type === type)
   }
+
+  // Render active route component
+  const renderPage = () => {
+    switch (route.path) {
+      case '/':
+        return (
+          <SearchTab 
+            isFavorite={isFavorite} 
+            addFavorite={addFavorite} 
+            removeFavorite={removeFavorite} 
+          />
+        )
