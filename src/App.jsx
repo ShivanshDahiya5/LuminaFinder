@@ -119,3 +119,7 @@ function AppContent() {
       }
     }
   }
+
+  const removeFavorite = async (id, type) => {
+    const updated = favorites.filter(f => !(String(f.id) === String(id) && f.type === type))
+    setFavorites(updated)
