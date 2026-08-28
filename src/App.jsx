@@ -132,3 +132,7 @@ function AppContent() {
       }
     }
   }
+
+  const isFavorite = (id, type) => {
+    return favorites.some(f => String(f.id) === String(id) && f.type === type)
+  }
