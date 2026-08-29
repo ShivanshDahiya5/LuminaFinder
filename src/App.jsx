@@ -213,3 +213,16 @@ function AppContent() {
               Lumina<span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-extrabold">Finder</span>
             </span>
           </a>
+
+          {/* Navigation & Auth Section */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            <nav className="flex items-center gap-1 sm:gap-2">
+              <a
+                id="nav-explore"
+                href="#/"
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
+                  route.path === '/' || route.path === '/movie' || route.path === '/book'
+                    ? 'bg-slate-900 border border-slate-800 text-white shadow-inner shadow-slate-950/50'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 border border-transparent'
+                }`}
+              ></a>
