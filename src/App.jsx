@@ -237,3 +237,11 @@ function AppContent() {
                 href="#/trending"
                 className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
                   route.path === '/trending'
+                  ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 text-amber-300 shadow-inner shadow-amber-950/50'
+                    : 'text-slate-400 hover:text-amber-300 hover:bg-slate-900/30 border border-transparent'
+                }`}
+                onClick={() => {
+                  sessionStorage.removeItem('search-query');
+                  sessionStorage.removeItem('search-results');
+                }}
+              ></a>
