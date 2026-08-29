@@ -244,4 +244,7 @@ function AppContent() {
                   sessionStorage.removeItem('search-query');
                   sessionStorage.removeItem('search-results');
                 }}
-              ></a>
+              >
+                <span className="text-amber-400 text-sm">🔥</span>
+                <span className="hidden sm:inline">Trending</span>
+              </a>
