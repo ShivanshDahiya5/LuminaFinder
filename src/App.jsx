@@ -248,3 +248,9 @@ function AppContent() {
                 <span className="text-amber-400 text-sm">🔥</span>
                 <span className="hidden sm:inline">Trending</span>
               </a>
+
+              <a
+                id="nav-library"
+                href="#/favorites"
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 relative ${
+                  route.path === '/favorites'
