@@ -295,4 +295,9 @@ function AppContent() {
                   <div 
                     className="absolute right-0 mt-2 w-56 glass-panel rounded-2xl p-2 border border-slate-800 shadow-2xl z-50 animate-scale-up"
                     onMouseLeave={() => setIsUserMenuOpen(false)}
-                  ></div>
+                  >
+                    <div className="px-3 py-2 border-b border-slate-800/60 mb-1">
+                      <p className="text-xs font-semibold text-white truncate">{user.username}</p>
+                      <p className="text-[10px] text-slate-400 truncate">{user.email}</p>
+                    </div>
+                  </div>
