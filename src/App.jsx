@@ -225,4 +225,9 @@ function AppContent() {
                     ? 'bg-slate-900 border border-slate-800 text-white shadow-inner shadow-slate-950/50'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 border border-transparent'
                 }`}
-              ></a>
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                <span className="hidden sm:inline">Explore</span>
+              </a>
