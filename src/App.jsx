@@ -289,3 +289,10 @@ function AppContent() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
+
+                {/* Dropdown Menu */}
+                {isUserMenuOpen && (
+                  <div 
+                    className="absolute right-0 mt-2 w-56 glass-panel rounded-2xl p-2 border border-slate-800 shadow-2xl z-50 animate-scale-up"
+                    onMouseLeave={() => setIsUserMenuOpen(false)}
+                  ></div>
