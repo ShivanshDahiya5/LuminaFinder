@@ -284,4 +284,8 @@ function AppContent() {
                   </div>
                   <span className="text-xs font-semibold text-slate-200 hidden md:inline max-w-[100px] truncate">
                     {user.username}
+                    </span>
+                  <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </button>
