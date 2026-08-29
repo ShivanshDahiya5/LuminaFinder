@@ -269,3 +269,5 @@ function AppContent() {
                 )}
               </a>
             </nav>
+
+            <div className="h-6 w-[1px] bg-slate-800/80 mx-1 hidden sm:block"></div>
