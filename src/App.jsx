@@ -261,3 +261,11 @@ function AppContent() {
                 <svg className="w-4 h-4 text-rose-500 fill-current" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                 </svg>
+                <span className="hidden sm:inline">My Library</span>
+                {favorites.length > 0 && (
+                  <span className="min-w-4 h-4 px-1 flex items-center justify-center text-[10px] font-bold text-white bg-gradient-to-r from-rose-500 to-pink-600 rounded-full border border-slate-950 shadow-md">
+                    {favorites.length}
+                  </span>
+                )}
+              </a>
+            </nav>
