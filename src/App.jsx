@@ -271,3 +271,11 @@ function AppContent() {
             </nav>
 
             <div className="h-6 w-[1px] bg-slate-800/80 mx-1 hidden sm:block"></div>
+
+             {/* Authentication Buttons / User Profile */}
+            {user ? (
+              <div className="relative">
+                <button
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="flex items-center gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-xl border border-slate-800 bg-slate-900/80 hover:bg-slate-900 transition-colors"
+                ></button>
