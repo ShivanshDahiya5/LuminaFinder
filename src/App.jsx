@@ -337,4 +337,14 @@ function AppContent() {
                 <button
                   onClick={openRegisterModal}
                   className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-md shadow-purple-500/20 transition-all hidden sm:block"
-                ></button>
+                >Register</button>
+                </div>
+            )}
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content Area */}
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 animate-fade-in">
+        {renderPage()}
+      </main>
