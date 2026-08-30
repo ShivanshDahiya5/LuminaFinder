@@ -366,3 +366,11 @@ function AppContent() {
     </div>
   )
 }
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  )
+}
