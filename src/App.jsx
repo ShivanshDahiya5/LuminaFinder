@@ -361,3 +361,8 @@ function AppContent() {
                         <span className="hover:text-slate-300 transition-colors">Google Books API</span>
 
           </div>
+          </div>
+      </footer>
+    </div>
+  )
+}
