@@ -353,4 +353,7 @@ function AppContent() {
       <footer className="w-full border-t border-slate-900 bg-slate-950/50 py-6 text-center text-xs text-slate-500">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>© {new Date().getFullYear()} LuminaFinder Full-Stack. Worldwide Media Catalog.</p>
-          <div className="flex gap-4"></div>
+          <div className="flex gap-4">
+            <span className="hover:text-slate-300 transition-colors">TVMaze API</span>
+            <span className="text-slate-800">|</span>
+          </div>
