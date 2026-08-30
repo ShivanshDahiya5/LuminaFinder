@@ -348,3 +348,9 @@ function AppContent() {
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 animate-fade-in">
         {renderPage()}
       </main>
+
+      {/* Footer */}
+      <footer className="w-full border-t border-slate-900 bg-slate-950/50 py-6 text-center text-xs text-slate-500">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p>© {new Date().getFullYear()} LuminaFinder Full-Stack. Worldwide Media Catalog.</p>
+          <div className="flex gap-4"></div>
