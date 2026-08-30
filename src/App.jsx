@@ -356,4 +356,6 @@ function AppContent() {
           <div className="flex gap-4">
             <span className="hover:text-slate-300 transition-colors">TVMaze API</span>
             <span className="text-slate-800">|</span>
+            <span className="hover:text-slate-300 transition-colors">iTunes Global</span>
+            <span className="text-slate-800">|</span>
           </div>
