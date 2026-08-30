@@ -318,4 +318,8 @@ function AppContent() {
                         clearFavorites()
                         logout()
                       }}
+                      className="w-full text-left flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-rose-400 hover:bg-rose-500/10 transition-colors mt-1 border-t border-slate-800/40"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      
                   </div>
