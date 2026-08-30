@@ -358,4 +358,6 @@ function AppContent() {
             <span className="text-slate-800">|</span>
             <span className="hover:text-slate-300 transition-colors">iTunes Global</span>
             <span className="text-slate-800">|</span>
+                        <span className="hover:text-slate-300 transition-colors">Google Books API</span>
+
           </div>
