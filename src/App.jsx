@@ -311,4 +311,11 @@ function AppContent() {
                       </svg>
                       Saved Library ({favorites.length})
                     </a>
+
+                    <button
+                      onClick={() => {
+                        setIsUserMenuOpen(false)
+                        clearFavorites()
+                        logout()
+                      }}
                   </div>
