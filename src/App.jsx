@@ -333,4 +333,8 @@ function AppContent() {
                 <button
                   onClick={openLoginModal}
                   className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-all"
+                >Sign In</button>
+                <button
+                  onClick={openRegisterModal}
+                  className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-md shadow-purple-500/20 transition-all hidden sm:block"
                 ></button>
