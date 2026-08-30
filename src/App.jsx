@@ -69,7 +69,7 @@ function AppContent() {
   // Route parsing function
   const parseRoute = () => {
     const hash = window.location.hash || '#/'
-    
+
     if (hash === '#/' || hash === '') {
       return { path: '/', params: {} }
     }
@@ -79,13 +79,13 @@ function AppContent() {
     if (hash === '#/favorites') {
       return { path: '/favorites', params: {} }
     }
-    
+
     // Match #/movie/:id
     const movieMatch = hash.match(/^#\/movie\/([^/]+)$/)
     if (movieMatch) {
       return { path: '/movie', params: { id: movieMatch[1] } }
     }
-    
+
     // Match #/book/:id
     const bookMatch = hash.match(/^#\/book\/([^/]+)$/)
     if (bookMatch) {
@@ -100,7 +100,7 @@ function AppContent() {
     const handleHashChange = () => {
       setRoute(parseRoute())
     }
-    
+
     handleHashChange()
     window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
@@ -144,44 +144,44 @@ function AppContent() {
     switch (route.path) {
       case '/':
         return (
-          <SearchTab 
-            isFavorite={isFavorite} 
-            addFavorite={addFavorite} 
-            removeFavorite={removeFavorite} 
+          <SearchTab
+            isFavorite={isFavorite}
+            addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
           />
         )
       case '/trending':
         return (
-          <SearchTab 
+          <SearchTab
             initialShowTrending={true}
-            isFavorite={isFavorite} 
-            addFavorite={addFavorite} 
-            removeFavorite={removeFavorite} 
+            isFavorite={isFavorite}
+            addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
           />
         )
       case '/favorites':
         return (
-          <FavoritesTab 
-            favorites={favorites} 
-            removeFavorite={removeFavorite} 
+          <FavoritesTab
+            favorites={favorites}
+            removeFavorite={removeFavorite}
           />
         )
       case '/movie':
         return (
-          <MovieDetails 
-            id={route.params.id} 
-            isFavorite={isFavorite} 
-            addFavorite={addFavorite} 
-            removeFavorite={removeFavorite} 
+          <MovieDetails
+            id={route.params.id}
+            isFavorite={isFavorite}
+            addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
           />
         )
       case '/book':
         return (
-          <BookDetails 
-            id={route.params.id} 
-            isFavorite={isFavorite} 
-            addFavorite={addFavorite} 
-            removeFavorite={removeFavorite} 
+          <BookDetails
+            id={route.params.id}
+            isFavorite={isFavorite}
+            addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
           />
         )
       default:
@@ -223,26 +223,24 @@ function AppContent() {
               <a
                 id="nav-explore"
                 href="#/"
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  route.path === '/' || route.path === '/movie' || route.path === '/book'
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${route.path === '/' || route.path === '/movie' || route.path === '/book'
                     ? 'bg-slate-900 border border-slate-800 text-white shadow-inner shadow-slate-950/50'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 border border-transparent'
-                }`}
+                  }`}
               >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                  </svg>
-                  <span className="hidden sm:inline">Explore</span>
-                </a>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                <span className="hidden sm:inline">Explore</span>
+              </a>
 
               <a
                 id="nav-trending"
                 href="#/trending"
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  route.path === '/trending'
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${route.path === '/trending'
                     ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 text-amber-300 shadow-inner shadow-amber-950/50'
                     : 'text-slate-400 hover:text-amber-300 hover:bg-slate-900/30 border border-transparent'
-                }`}
+                  }`}
                 onClick={() => {
                   sessionStorage.removeItem('search-query');
                   sessionStorage.removeItem('search-results');
@@ -255,11 +253,10 @@ function AppContent() {
               <a
                 id="nav-library"
                 href="#/favorites"
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 relative ${
-                  route.path === '/favorites'
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 relative ${route.path === '/favorites'
                     ? 'bg-slate-900 border border-slate-800 text-white shadow-inner shadow-slate-950/50'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/30 border border-transparent'
-                }`}
+                  }`}
               >
                 <svg className="w-4 h-4 text-rose-500 fill-current" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
@@ -295,7 +292,7 @@ function AppContent() {
 
                 {/* Dropdown Menu */}
                 {isUserMenuOpen && (
-                  <div 
+                  <div
                     className="absolute right-0 mt-2 w-56 glass-panel rounded-2xl p-2 border border-slate-800 shadow-2xl z-50 animate-scale-up"
                     onMouseLeave={() => setIsUserMenuOpen(false)}
                   >
