@@ -328,4 +328,9 @@ function AppContent() {
                   </div>
                 )}
               </div>
-                  
+                  ) : (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={openLoginModal}
+                  className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-all"
+                ></button>
