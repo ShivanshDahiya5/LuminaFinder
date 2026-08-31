@@ -7,3 +7,11 @@ export function AuthProvider({ children }) {
 const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState('login'); // 'login' or 'register'
   const [isLoadingUser, setIsLoadingUser] = useState(true);
+
+    // Fetch current user details if token exists
+  const fetchCurrentUser = useCallback(async (authToken) => {
+    if (!authToken) {
+      setUser(null);
+      setIsLoadingUser(false);
+      return;
+    }
