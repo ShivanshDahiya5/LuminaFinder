@@ -22,3 +22,12 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
           'Authorization': `Bearer ${authToken}`
         }
       });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+      } else {
+        localStorage.removeItem('lumina_token');
+        setToken(null);
+        setUser(null);
+      }
