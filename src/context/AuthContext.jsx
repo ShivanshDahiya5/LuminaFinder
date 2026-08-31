@@ -72,3 +72,10 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     setIsAuthModalOpen(false);
     return data;
   };
+
+  const register = async (email, username, password) => {
+    const response = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, username, password })
+    });
