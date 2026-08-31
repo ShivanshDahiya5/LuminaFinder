@@ -31,3 +31,9 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
         setToken(null);
         setUser(null);
       }
+      } catch (err) {
+      console.error('Error fetching current user:', err);
+    } finally {
+      setIsLoadingUser(false);
+    }
+  }, []);
