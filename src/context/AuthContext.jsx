@@ -15,3 +15,10 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
       setIsLoadingUser(false);
       return;
     }
+
+    try {
+      const response = await fetch('/api/auth/me', {
+        headers: {
+          'Authorization': `Bearer ${authToken}`
+        }
+      });
