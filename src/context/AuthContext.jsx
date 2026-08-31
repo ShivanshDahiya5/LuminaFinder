@@ -37,3 +37,13 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
       setIsLoadingUser(false);
     }
   }, []);
+
+  useEffect(() => {
+    let active = true;
+    Promise.resolve().then(() => {
+      if (!active) return;
+      if (token) {
+        fetchCurrentUser(token);
+      } else {
+        setIsLoadingUser(false);
+      }
