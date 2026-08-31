@@ -47,3 +47,8 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
       } else {
         setIsLoadingUser(false);
       }
+      });
+    return () => {
+      active = false;
+    };
+  }, [token, fetchCurrentUser]);
