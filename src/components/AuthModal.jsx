@@ -36,3 +36,26 @@ function AuthModal() {
     e.preventDefault();
     setError(null);
     setIsSubmitting(true);
+
+    try {
+      if (authModalMode === 'login') {
+        await login(email, password);
+      } else {
+        if (!username.trim()) {
+          throw new Error('Username is required.');
+        }
+        await register(email, username, password);
+      }
+    } catch (err) {
+      setError(err.message || 'An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+   return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
+      <div 
+        className="glass-panel max-w-md w-full rounded-3xl p-6 sm:p-8 relative border border-slate-800 shadow-2xl shadow-purple-950/20 animate-scale-up"
+        onClick={(e) => e.stopPropagation()}
+      ></div>
