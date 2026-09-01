@@ -112,3 +112,13 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const closeAuthModal = () => {
     setIsAuthModalOpen(false);
   };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        isLoadingUser,
+        isAuthModalOpen,
+        authModalMode,
+        setAuthModalMode,
