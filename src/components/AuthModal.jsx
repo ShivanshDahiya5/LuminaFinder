@@ -99,3 +99,15 @@ function AuthModal() {
           >
             Sign In
           </button>
+          <button
+            type="button"
+            onClick={() => handleModeSwitch('register')}
+            className={`py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
+              authModalMode === 'register'
+                ? 'bg-slate-900 text-white shadow-sm border border-slate-800'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            Register
+          </button>
+        </div>
