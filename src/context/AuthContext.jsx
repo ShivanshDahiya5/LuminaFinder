@@ -122,3 +122,16 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
         isAuthModalOpen,
         authModalMode,
         setAuthModalMode,
+        openLoginModal,
+        openRegisterModal,
+        closeAuthModal,
+        login,
+        register,
+        logout,
+        refreshUser: () => fetchCurrentUser(token)
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+}
