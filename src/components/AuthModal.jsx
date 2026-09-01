@@ -23,3 +23,16 @@ function AuthModal() {
   }, [isAuthModalOpen, closeAuthModal]);
 
   if (!isAuthModalOpen) return null;
+
+  const handleModeSwitch = (mode) => {
+    setError(null);
+    setEmail('');
+    setUsername('');
+    setPassword('');
+    setAuthModalMode(mode);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setIsSubmitting(true);
