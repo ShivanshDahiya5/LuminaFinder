@@ -92,3 +92,9 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     setIsAuthModalOpen(false);
     return data;
   };
+
+  const logout = () => {
+    localStorage.removeItem('lumina_token');
+    setToken(null);
+    setUser(null);
+  };
