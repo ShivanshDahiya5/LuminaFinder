@@ -98,3 +98,8 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     setToken(null);
     setUser(null);
   };
+
+  const openLoginModal = () => {
+    setAuthModalMode('login');
+    setIsAuthModalOpen(true);
+  };
