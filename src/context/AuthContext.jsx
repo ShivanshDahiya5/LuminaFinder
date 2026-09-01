@@ -4,11 +4,11 @@ import { AuthContext } from './AuthContextObject';
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(() => localStorage.getItem('lumina_token') || null);
   const [user, setUser] = useState(null);
-const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState('login'); // 'login' or 'register'
   const [isLoadingUser, setIsLoadingUser] = useState(true);
 
-    // Fetch current user details if token exists
+  // Fetch current user details if token exists
   const fetchCurrentUser = useCallback(async (authToken) => {
     if (!authToken) {
       setUser(null);
@@ -31,7 +31,7 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
         setToken(null);
         setUser(null);
       }
-      } catch (err) {
+    } catch (err) {
       console.error('Error fetching current user:', err);
     } finally {
       setIsLoadingUser(false);
@@ -47,7 +47,7 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
       } else {
         setIsLoadingUser(false);
       }
-      });
+    });
     return () => {
       active = false;
     };
