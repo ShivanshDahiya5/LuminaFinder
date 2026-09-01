@@ -103,3 +103,12 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     setAuthModalMode('login');
     setIsAuthModalOpen(true);
   };
+
+  const openRegisterModal = () => {
+    setAuthModalMode('register');
+    setIsAuthModalOpen(true);
+  };
+
+  const closeAuthModal = () => {
+    setIsAuthModalOpen(false);
+  };
