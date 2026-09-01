@@ -85,3 +85,10 @@ const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     if (!response.ok) {
       throw new Error(data.error || 'Registration failed.');
     }
+
+    localStorage.setItem('lumina_token', data.token);
+    setToken(data.token);
+    setUser(data.user);
+    setIsAuthModalOpen(false);
+    return data;
+  };
