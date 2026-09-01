@@ -86,3 +86,16 @@ function AuthModal() {
               : 'Join to save worldwide movies and books across all your devices'}
           </p>
         </div>
+        {/* Mode Selector Pills */}
+        <div className="grid grid-cols-2 bg-slate-950 p-1 rounded-2xl mb-6 border border-slate-850">
+          <button
+            type="button"
+            onClick={() => handleModeSwitch('login')}
+            className={`py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
+              authModalMode === 'login'
+                ? 'bg-slate-900 text-white shadow-sm border border-slate-800'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            Sign In
+          </button>
