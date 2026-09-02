@@ -29,3 +29,16 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
         }
       }
     }
+
+    if (id) {
+      fetchDetails()
+    }
+
+    return () => {
+      active = false
+    }
+  }, [id])
+
+  if (isLoading) {
+    return <SkeletonDetails />
+  }
