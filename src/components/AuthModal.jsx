@@ -53,9 +53,9 @@ function AuthModal() {
     }
   };
 
-   return (
+  return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div 
+      <div
         className="glass-panel max-w-md w-full rounded-3xl p-6 sm:p-8 relative border border-slate-800 shadow-2xl shadow-purple-950/20 animate-scale-up"
         onClick={(e) => e.stopPropagation()}
       >
@@ -81,8 +81,8 @@ function AuthModal() {
             {authModalMode === 'login' ? 'Welcome Back' : 'Create Lumina Account'}
           </h2>
           <p className="text-xs text-slate-400">
-            {authModalMode === 'login' 
-              ? 'Sign in to access your synchronized worldwide media library' 
+            {authModalMode === 'login'
+              ? 'Sign in to access your synchronized worldwide media library'
               : 'Join to save worldwide movies and books across all your devices'}
           </p>
         </div>
@@ -91,22 +91,20 @@ function AuthModal() {
           <button
             type="button"
             onClick={() => handleModeSwitch('login')}
-            className={`py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
-              authModalMode === 'login'
+            className={`py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${authModalMode === 'login'
                 ? 'bg-slate-900 text-white shadow-sm border border-slate-800'
                 : 'text-slate-400 hover:text-slate-200'
-            }`}
+              }`}
           >
             Sign In
           </button>
           <button
             type="button"
             onClick={() => handleModeSwitch('register')}
-            className={`py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
-              authModalMode === 'register'
+            className={`py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${authModalMode === 'register'
                 ? 'bg-slate-900 text-white shadow-sm border border-slate-800'
                 : 'text-slate-400 hover:text-slate-200'
-            }`}
+              }`}
           >
             Register
           </button>
@@ -177,12 +175,12 @@ function AuthModal() {
             disabled={isSubmitting}
             className="w-full mt-2 py-3.5 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 hover:from-blue-600 hover:to-purple-700 disabled:opacity-50 text-white font-bold text-sm rounded-xl shadow-lg shadow-purple-500/20 active:scale-98 transition-all flex items-center justify-center gap-2"
           >
-          {isSubmitting ? (
+            {isSubmitting ? (
               <svg className="w-5 h-5 animate-spin text-white" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
-              ) : authModalMode === 'login' ? (
+            ) : authModalMode === 'login' ? (
               'Sign In'
             ) : (
               'Create Account'
