@@ -18,3 +18,14 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
         if (active) {
           setBook(data)
         }
+        } catch (err) {
+        console.error(err)
+        if (active) {
+          setError('Failed to load book details. The item might not exist.')
+        }
+      } finally {
+        if (active) {
+          setIsLoading(false)
+        }
+      }
+    }
