@@ -121,3 +121,19 @@ function AuthModal() {
             <span>{error}</span>
           </div>
         )}
+
+        {/* Auth Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {authModalMode === 'register' && (
+            <div>
+              <label className="block text-xs font-medium text-slate-300 mb-1">Username</label>
+              <input
+                type="text"
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="e.g. AlexReader"
+                className="w-full px-4 py-3 bg-slate-950/80 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 transition-all"
+              />
+            </div>
+          )}
