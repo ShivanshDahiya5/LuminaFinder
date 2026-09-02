@@ -171,3 +171,9 @@ function AuthModal() {
               </button>
             </div>
           </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full mt-2 py-3.5 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 hover:from-blue-600 hover:to-purple-700 disabled:opacity-50 text-white font-bold text-sm rounded-xl shadow-lg shadow-purple-500/20 active:scale-98 transition-all flex items-center justify-center gap-2"
+          ></button>
