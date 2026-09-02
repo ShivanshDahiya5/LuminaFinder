@@ -86,6 +86,7 @@ function AuthModal() {
               : 'Join to save worldwide movies and books across all your devices'}
           </p>
         </div>
+
         {/* Mode Selector Pills */}
         <div className="grid grid-cols-2 bg-slate-950 p-1 rounded-2xl mb-6 border border-slate-850">
           <button
@@ -192,4 +193,4 @@ function AuthModal() {
   );
 }
 
-export default AuthModal;          
+export default AuthModal;
