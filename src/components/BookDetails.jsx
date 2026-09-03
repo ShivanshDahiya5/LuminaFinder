@@ -173,3 +173,11 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
               dangerouslySetInnerHTML={{ __html: book.description }}
             />
           </div>
+
+          {/* Action buttons */}
+          <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-900">
+            <button
+              onClick={() => {
+                if (favorited) {
+                  removeFavorite(book.id, book.type)
+                } else {
