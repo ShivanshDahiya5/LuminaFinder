@@ -139,3 +139,10 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
               >
                 {genre}
               </span>
+              ))}
+            {book.genres.length === 0 && (
+              <span className="px-3.5 py-1 bg-slate-900 border border-slate-800 text-slate-400 text-xs font-semibold rounded-full">
+                Literature
+              </span>
+            )}
+          </div>
