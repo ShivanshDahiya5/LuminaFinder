@@ -181,3 +181,16 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 if (favorited) {
                   removeFavorite(book.id, book.type)
                 } else {
+                  addFavorite({
+                    id: book.id,
+                    title: book.title,
+                    subtitle: book.authors.join(', '),
+                    image: book.image,
+                    rating: book.rating,
+                    type: book.type,
+                    genres: book.genres,
+                    description: book.description,
+                  })
+                }
+              }}
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-102 active:scale-98 cursor-pointer ${
