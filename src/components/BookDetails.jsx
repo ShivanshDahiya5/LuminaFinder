@@ -146,3 +146,12 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
               </span>
             )}
           </div>
+
+          {/* Metadata Grid */}
+          <div className="grid grid-cols-3 gap-4 py-4 px-4 bg-slate-950/40 rounded-2xl border border-slate-900/60 text-center text-xs md:text-sm">
+            <div>
+              <p className="text-slate-500 font-medium">Pages</p>
+              <p className="text-slate-200 font-semibold mt-0.5">{book.pageCount}</p>
+            </div>
+            <div>
+              <p className="text-slate-500 font-medium">Publisher</p>
