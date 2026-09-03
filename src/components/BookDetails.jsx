@@ -120,3 +120,22 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 </div>
               )}
             </div>
+            {book.subtitle && (
+              <p className="text-base text-slate-400 font-light italic leading-snug">
+                {book.subtitle}
+              </p>
+            )}
+            <p className="text-sm text-slate-400 font-medium">
+              By: <span className="text-blue-400 font-semibold">{book.authors.join(', ')}</span>
+            </p>
+          </div>
+
+            {/* Categories/Genres */}
+          <div className="flex flex-wrap gap-2">
+            {book.genres.map((genre) => (
+              <span
+                key={genre}
+                className="px-3.5 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-semibold rounded-full"
+              >
+                {genre}
+              </span>
