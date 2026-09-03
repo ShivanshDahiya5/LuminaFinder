@@ -18,7 +18,7 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
         if (active) {
           setBook(data)
         }
-        } catch (err) {
+      } catch (err) {
         console.error(err)
         if (active) {
           setError('Failed to load book details. The item might not exist.')
@@ -93,7 +93,7 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 alt={book.title}
                 className="w-full h-full object-cover"
               />
-              ) : (
+            ) : (
               <div className="w-full h-full flex flex-col items-center justify-center text-slate-600 bg-slate-900/60">
                 <svg className="w-16 h-16 mb-2 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253" />
@@ -130,7 +130,7 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
             </p>
           </div>
 
-            {/* Categories/Genres */}
+          {/* Categories/Genres */}
           <div className="flex flex-wrap gap-2">
             {book.genres.map((genre) => (
               <span
@@ -139,7 +139,7 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
               >
                 {genre}
               </span>
-              ))}
+            ))}
             {book.genres.length === 0 && (
               <span className="px-3.5 py-1 bg-slate-900 border border-slate-800 text-slate-400 text-xs font-semibold rounded-full">
                 Literature
@@ -193,11 +193,10 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                   })
                 }
               }}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-102 active:scale-98 cursor-pointer ${
-                favorited
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-102 active:scale-98 cursor-pointer ${favorited
                   ? 'bg-rose-500/10 border border-rose-500/30 text-rose-500 hover:bg-rose-500 hover:text-white'
                   : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-purple-500/10'
-              }`}
+                }`}
             >
               <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
@@ -213,8 +212,8 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 className="flex items-center gap-2 px-5 py-3 border border-slate-800 bg-slate-950 hover:bg-slate-900 hover:border-slate-700 text-slate-300 hover:text-white rounded-xl font-bold text-sm transition-all duration-300"
               >
                 <span>Preview Book</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
             )}
