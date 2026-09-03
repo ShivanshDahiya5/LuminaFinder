@@ -164,3 +164,12 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
               <p className="text-slate-200 font-semibold mt-0.5">{book.publishedDate}</p>
             </div>
           </div>
+
+          {/* Description */}
+          <div className="space-y-2 border-t border-slate-900 pt-5">
+            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Description</h3>
+            <div
+              className="text-slate-300 text-sm leading-relaxed font-light space-y-3 prose prose-invert max-w-none [&>p]:mb-3"
+              dangerouslySetInnerHTML={{ __html: book.description }}
+            />
+          </div>
