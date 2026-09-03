@@ -155,3 +155,12 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
             </div>
             <div>
               <p className="text-slate-500 font-medium">Publisher</p>
+              <p className="text-slate-200 font-semibold mt-0.5 truncate max-w-[120px] mx-auto" title={book.publisher}>
+                {book.publisher}
+              </p>
+            </div>
+            <div>
+              <p className="text-slate-500 font-medium">Published Date</p>
+              <p className="text-slate-200 font-semibold mt-0.5">{book.publishedDate}</p>
+            </div>
+          </div>
