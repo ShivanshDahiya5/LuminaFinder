@@ -93,3 +93,13 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 alt={book.title}
                 className="w-full h-full object-cover"
               />
+              ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center text-slate-600 bg-slate-900/60">
+                <svg className="w-16 h-16 mb-2 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253" />
+                </svg>
+                <span className="text-xs uppercase font-bold tracking-wider">No Cover</span>
+              </div>
+            )}
+          </div>
+        </div>
