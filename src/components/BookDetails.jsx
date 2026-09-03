@@ -81,3 +81,15 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
           Back to Browse
         </a>
       </div>
+
+      {/* Main Details Panel */}
+      <div className="glass-panel rounded-3xl p-6 md:p-8 flex flex-col md:flex-row gap-8 relative overflow-hidden">
+        {/* Cover Image Column */}
+        <div className="w-full md:w-64 shrink-0 space-y-4">
+          <div className="aspect-[2/3] w-full rounded-2xl bg-slate-950 border border-slate-800/40 overflow-hidden shadow-2xl relative">
+            {book.image ? (
+              <img
+                src={book.image}
+                alt={book.title}
+                className="w-full h-full object-cover"
+              />
