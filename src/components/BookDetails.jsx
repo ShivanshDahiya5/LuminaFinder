@@ -226,3 +226,17 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white rounded-xl font-bold text-sm shadow-lg hover:shadow-orange-500/10 transition-all duration-300"
               >
+                <span>Purchase Book</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default BookDetails
