@@ -210,4 +210,7 @@ function BookDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 href={book.previewLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex 
+                className="flex items-center gap-2 px-5 py-3 border border-slate-800 bg-slate-950 hover:bg-slate-900 hover:border-slate-700 text-slate-300 hover:text-white rounded-xl font-bold text-sm transition-all duration-300"
+              >
+                <span>Preview Book</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
