@@ -138,3 +138,14 @@ function FavoritesTab({ favorites, removeFavorite }) {
                   {item.type === 'movie' ? 'Show/Movie' : 'Book'}
                 </span>
               </div>
+
+              {/* Info Container */}
+              <div className="mt-3 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-200 line-clamp-1 group-hover:text-white transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 line-clamp-1 mt-0.5 font-light">
+                    {item.subtitle}
+                  </p>
+                </div>
