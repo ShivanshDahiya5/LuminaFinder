@@ -88,3 +88,14 @@ function FavoritesTab({ favorites, removeFavorite }) {
             >
               Movies & TV ({favorites.filter(f => f.type === 'movie').length})
             </button>
+            <button
+              onClick={() => setFilterType('book')}
+              className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                filterType === 'book' ? 'bg-slate-900 text-blue-400 border border-slate-800' : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              Books ({favorites.filter(f => f.type === 'book').length})
+            </button>
+          </div>
+        </div>
+      )}
