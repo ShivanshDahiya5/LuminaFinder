@@ -131,3 +131,10 @@ function FavoritesTab({ favorites, removeFavorite }) {
                     ⭐ {item.rating}
                   </span>
                 )}
+                {/* Media Type Badge */}
+                <span className={`absolute top-2 right-2 px-2 py-0.5 rounded-lg text-[9px] font-bold uppercase border ${
+                  item.type === 'movie' ? 'bg-purple-950/90 text-purple-300 border-purple-800/40' : 'bg-blue-950/90 text-blue-300 border-blue-800/40'
+                }`}>
+                  {item.type === 'movie' ? 'Show/Movie' : 'Book'}
+                </span>
+              </div>
