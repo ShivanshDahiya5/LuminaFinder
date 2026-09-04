@@ -99,3 +99,14 @@ function FavoritesTab({ favorites, removeFavorite }) {
           </div>
         </div>
       )}
+
+{/* Library Grid */}
+      {filteredFavorites.length > 0 ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+          {filteredFavorites.map((item) => (
+            <div
+              key={`${item.type}-${item.id}`}
+              className="glass-card rounded-2xl p-4 flex flex-col justify-between group cursor-pointer relative overflow-hidden h-[380px] border border-slate-850 hover:border-slate-700 transition-all"
+              onClick={() => {
+                window.location.hash = `#/${item.type}/${item.id}`
+              }}
