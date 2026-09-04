@@ -58,3 +58,15 @@ function FavoritesTab({ favorites, removeFavorite }) {
             >
               Sign In
             </button>
+            <button
+              onClick={openRegisterModal}
+              className="px-4 py-2 border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-xl text-xs font-semibold transition-colors"
+            >
+              Create Account
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Filter Tabs */}
+      {favorites.length > 0 && (
