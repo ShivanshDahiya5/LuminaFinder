@@ -36,3 +36,13 @@ function FavoritesTab({ favorites, removeFavorite }) {
           </span>
         </div>
       </div>
+
+      {/* Guest Account Banner */}
+      {!user && (
+        <div className="glass-panel p-4 sm:p-5 rounded-2xl border border-purple-500/30 bg-purple-950/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3 text-left">
+            <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center shrink-0 border border-purple-500/30">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+              </svg>
+            </div>
