@@ -27,3 +27,12 @@ function FavoritesTab({ favorites, removeFavorite }) {
             Your personal collection of saved movies, TV shows, and literature.
           </p>
         </div>
+
+        {/* Sync Status Badge */}
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-800 bg-slate-950/80 text-xs">
+          <span className={`w-2 h-2 rounded-full ${user ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`}></span>
+          <span className="text-slate-300 font-medium">
+            {user ? `Cloud DB Synced (${user.username})` : 'Guest Storage (Local)'}
+          </span>
+        </div>
+      </div>
