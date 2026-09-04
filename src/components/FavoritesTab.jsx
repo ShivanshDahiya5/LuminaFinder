@@ -46,3 +46,15 @@ function FavoritesTab({ favorites, removeFavorite }) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
               </svg>
             </div>
+            <div>
+              <h4 className="text-sm font-bold text-white">Save your library across all devices</h4>
+              <p className="text-xs text-slate-400">Sign in or register for a free account to sync your saved titles directly to SQLite server storage.</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              onClick={openLoginModal}
+              className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-semibold shadow-md transition-colors"
+            >
+              Sign In
+            </button>
