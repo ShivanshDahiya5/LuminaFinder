@@ -70,3 +70,13 @@ function FavoritesTab({ favorites, removeFavorite }) {
 
       {/* Filter Tabs */}
       {favorites.length > 0 && (
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 bg-slate-950 p-1 rounded-2xl border border-slate-850">
+            <button
+              onClick={() => setFilterType('all')}
+              className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                filterType === 'all' ? 'bg-slate-900 text-white border border-slate-800' : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              All Saved ({favorites.length})
+            </button>
