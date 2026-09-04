@@ -149,3 +149,15 @@ function FavoritesTab({ favorites, removeFavorite }) {
                     {item.subtitle}
                   </p>
                 </div>
+
+                {/* Remove button */}
+                <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-900">
+                  <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">
+                    {item.genres ? (Array.isArray(item.genres) ? item.genres[0] : item.genres) : 'Saved'}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      removeFavorite(item.id, item.type)
+                    }}
