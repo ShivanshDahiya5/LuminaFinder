@@ -119,3 +119,15 @@ function FavoritesTab({ favorites, removeFavorite }) {
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  ) : (
+                  <div className="w-full h-full flex items-center justify-center text-xs text-slate-600 bg-slate-900/60 p-2 text-center">
+                    No Cover Image
+                  </div>
+                )}
+                
+                {/* Rating Badge */}
+                {item.rating && (
+                  <span className="absolute top-2 left-2 px-2 py-0.5 bg-slate-950/85 backdrop-blur-md rounded-lg text-[10px] font-bold text-amber-400 border border-slate-800">
+                    ⭐ {item.rating}
+                  </span>
+                )}
