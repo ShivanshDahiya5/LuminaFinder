@@ -80,3 +80,11 @@ function FavoritesTab({ favorites, removeFavorite }) {
             >
               All Saved ({favorites.length})
             </button>
+            <button
+              onClick={() => setFilterType('movie')}
+              className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                filterType === 'movie' ? 'bg-slate-900 text-purple-400 border border-slate-800' : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              Movies & TV ({favorites.filter(f => f.type === 'movie').length})
+            </button>
