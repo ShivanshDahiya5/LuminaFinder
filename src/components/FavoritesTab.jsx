@@ -180,3 +180,11 @@ function FavoritesTab({ favorites, removeFavorite }) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </div>
+          <div>
+            <h3 className="text-lg font-bold text-slate-300">Your library is currently empty</h3>
+            <p className="text-slate-500 text-sm mt-1">
+              {filterType === 'all' 
+                ? 'Explore worldwide titles and click the heart icon to build your collection.' 
+                : `No saved ${filterType === 'movie' ? 'movies or TV shows' : 'books'} found.`}
+            </p>
+          </div>
