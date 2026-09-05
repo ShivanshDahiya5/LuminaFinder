@@ -101,3 +101,7 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 <span className="text-xs uppercase font-bold tracking-wider">No Image</span>
               </div>
             )}
+
+            {/* Status Indicator */}
+            <span className={`absolute bottom-3 right-3 px-2.5 py-1 rounded-lg text-[9px] font-bold uppercase tracking-wider border ${
+              movie.status === 'Running'
