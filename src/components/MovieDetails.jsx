@@ -105,3 +105,10 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
             {/* Status Indicator */}
             <span className={`absolute bottom-3 right-3 px-2.5 py-1 rounded-lg text-[9px] font-bold uppercase tracking-wider border ${
               movie.status === 'Running'
+              ? 'bg-emerald-950/90 text-emerald-300 border-emerald-800/40'
+                : 'bg-slate-950/90 text-slate-400 border-slate-800/40'
+            }`}>
+              {movie.status}
+            </span>
+          </div>
+        </div>
