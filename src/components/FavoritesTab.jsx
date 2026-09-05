@@ -188,3 +188,16 @@ function FavoritesTab({ favorites, removeFavorite }) {
                 : `No saved ${filterType === 'movie' ? 'movies or TV shows' : 'books'} found.`}
             </p>
           </div>
+          <a
+            href="#/"
+            className="inline-block px-5 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl text-xs font-semibold text-white shadow-lg hover:shadow-purple-500/20 transition-all"
+          >
+            Explore Titles
+          </a>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default FavoritesTab
