@@ -55,3 +55,14 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
           <h3 className="text-lg font-bold text-slate-300">Error Loading Show</h3>
           <p className="text-slate-500 text-sm mt-1">{error || 'Could not find details'}</p>
         </div>
+         <a
+          href="#/"
+          className="inline-block px-5 py-2.5 bg-slate-900 border border-slate-800 text-slate-300 hover:text-white rounded-xl text-xs font-semibold transition-colors"
+        >
+          Back to Search
+        </a>
+      </div>
+    )
+  }
+
+  const favorited = isFavorite(movie.id, movie.type)
