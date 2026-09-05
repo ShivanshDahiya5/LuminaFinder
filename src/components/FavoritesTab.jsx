@@ -74,25 +74,22 @@ function FavoritesTab({ favorites, removeFavorite }) {
           <div className="flex items-center gap-2 bg-slate-950 p-1 rounded-2xl border border-slate-850">
             <button
               onClick={() => setFilterType('all')}
-              className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-                filterType === 'all' ? 'bg-slate-900 text-white border border-slate-800' : 'text-slate-400 hover:text-slate-200'
-              }`}
+              className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${filterType === 'all' ? 'bg-slate-900 text-white border border-slate-800' : 'text-slate-400 hover:text-slate-200'
+                }`}
             >
               All Saved ({favorites.length})
             </button>
             <button
               onClick={() => setFilterType('movie')}
-              className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-                filterType === 'movie' ? 'bg-slate-900 text-purple-400 border border-slate-800' : 'text-slate-400 hover:text-slate-200'
-              }`}
+              className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${filterType === 'movie' ? 'bg-slate-900 text-purple-400 border border-slate-800' : 'text-slate-400 hover:text-slate-200'
+                }`}
             >
               Movies & TV ({favorites.filter(f => f.type === 'movie').length})
             </button>
             <button
               onClick={() => setFilterType('book')}
-              className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-                filterType === 'book' ? 'bg-slate-900 text-blue-400 border border-slate-800' : 'text-slate-400 hover:text-slate-200'
-              }`}
+              className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${filterType === 'book' ? 'bg-slate-900 text-blue-400 border border-slate-800' : 'text-slate-400 hover:text-slate-200'
+                }`}
             >
               Books ({favorites.filter(f => f.type === 'book').length})
             </button>
@@ -100,7 +97,7 @@ function FavoritesTab({ favorites, removeFavorite }) {
         </div>
       )}
 
-{/* Library Grid */}
+      {/* Library Grid */}
       {filteredFavorites.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
           {filteredFavorites.map((item) => (
@@ -110,7 +107,7 @@ function FavoritesTab({ favorites, removeFavorite }) {
               onClick={() => {
                 window.location.hash = `#/${item.type}/${item.id}`
               }}
-              >
+            >
               {/* Cover Image */}
               <div className="aspect-[2/3] w-full rounded-xl bg-slate-950 overflow-hidden relative border border-slate-800/40">
                 {item.image ? (
@@ -119,12 +116,12 @@ function FavoritesTab({ favorites, removeFavorite }) {
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  ) : (
+                ) : (
                   <div className="w-full h-full flex items-center justify-center text-xs text-slate-600 bg-slate-900/60 p-2 text-center">
                     No Cover Image
                   </div>
                 )}
-                
+
                 {/* Rating Badge */}
                 {item.rating && (
                   <span className="absolute top-2 left-2 px-2 py-0.5 bg-slate-950/85 backdrop-blur-md rounded-lg text-[10px] font-bold text-amber-400 border border-slate-800">
@@ -132,9 +129,8 @@ function FavoritesTab({ favorites, removeFavorite }) {
                   </span>
                 )}
                 {/* Media Type Badge */}
-                <span className={`absolute top-2 right-2 px-2 py-0.5 rounded-lg text-[9px] font-bold uppercase border ${
-                  item.type === 'movie' ? 'bg-purple-950/90 text-purple-300 border-purple-800/40' : 'bg-blue-950/90 text-blue-300 border-blue-800/40'
-                }`}>
+                <span className={`absolute top-2 right-2 px-2 py-0.5 rounded-lg text-[9px] font-bold uppercase border ${item.type === 'movie' ? 'bg-purple-950/90 text-purple-300 border-purple-800/40' : 'bg-blue-950/90 text-blue-300 border-blue-800/40'
+                  }`}>
                   {item.type === 'movie' ? 'Show/Movie' : 'Book'}
                 </span>
               </div>
@@ -173,7 +169,7 @@ function FavoritesTab({ favorites, removeFavorite }) {
             </div>
           ))}
         </div>
-        ) : (
+      ) : (
         <div className="glass-panel text-center py-20 px-4 rounded-3xl max-w-md mx-auto space-y-4 border border-slate-800">
           <div className="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center mx-auto border border-slate-800 text-slate-600">
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -183,8 +179,8 @@ function FavoritesTab({ favorites, removeFavorite }) {
           <div>
             <h3 className="text-lg font-bold text-slate-300">Your library is currently empty</h3>
             <p className="text-slate-500 text-sm mt-1">
-              {filterType === 'all' 
-                ? 'Explore worldwide titles and click the heart icon to build your collection.' 
+              {filterType === 'all'
+                ? 'Explore worldwide titles and click the heart icon to build your collection.'
                 : `No saved ${filterType === 'movie' ? 'movies or TV shows' : 'books'} found.`}
             </p>
           </div>
