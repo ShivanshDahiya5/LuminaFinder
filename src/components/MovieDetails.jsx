@@ -29,3 +29,20 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
         }
       }
     }
+
+    if (id) {
+      fetchDetails()
+    }
+    
+    return () => {
+      active = false
+    }
+  }, [id])
+
+  if (isLoading) {
+    return <SkeletonDetails />
+  }
+
+  if (error || !movie) {
+    return (
+      <div className="glass-panel text-center py-16 px-4 rounded-3xl max-w-md mx-auto space-y-4">
