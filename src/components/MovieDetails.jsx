@@ -129,3 +129,18 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 </div>
               )}
             </div>
+             <p className="text-sm text-slate-400 font-medium">
+              Premiered: <span className="text-slate-300">{movie.premiered}</span>
+            </p>
+          </div>
+
+          {/* Genre Pills */}
+          <div className="flex flex-wrap gap-2">
+            {movie.genres.map((genre) => (
+              <span
+                key={genre}
+                className="px-3.5 py-1 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold rounded-full"
+              >
+                {genre}
+              </span>
+            ))}
