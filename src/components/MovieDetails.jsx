@@ -229,3 +229,10 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
             </svg>
             Cast Members
           </h3>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
+            {movie.cast.map((member) => (
+              <div key={member.name} className="glass-card rounded-2xl p-2.5 text-center flex flex-col items-center justify-between space-y-2 border border-slate-900">
+                <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-950 border border-slate-800">
+                  {member.image ? (
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
