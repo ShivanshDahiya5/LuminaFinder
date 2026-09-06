@@ -171,3 +171,23 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
               dangerouslySetInnerHTML={{ __html: movie.description }}
             />
           </div>
+
+          {/* Action buttons */}
+          <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-900">
+            <button
+              onClick={() => {
+                if (favorited) {
+                  removeFavorite(movie.id, movie.type)
+                } else {
+                  addFavorite({
+                    id: movie.id,
+                    title: movie.title,
+                    subtitle: movie.subtitle,
+                    image: movie.image,
+                    rating: movie.rating,
+                    type: movie.type,
+                    genres: movie.genres,
+                    description: movie.description,
+                  })
+                }
+              }}
