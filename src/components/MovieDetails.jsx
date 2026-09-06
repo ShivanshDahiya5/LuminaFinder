@@ -157,3 +157,17 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
               <p className="text-slate-500 font-medium">Duration</p>
               <p className="text-slate-200 font-semibold mt-0.5">{movie.runtime}</p>
             </div>
+            <div>
+              <p className="text-slate-500 font-medium">Network / Provider</p>
+              <p className="text-slate-200 font-semibold mt-0.5">{movie.network}</p>
+            </div>
+          </div>
+
+          {/* Summary / Description */}
+          <div className="space-y-2 border-t border-slate-900 pt-5">
+            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider">Summary</h3>
+            <div
+              className="text-slate-300 text-sm leading-relaxed font-light space-y-3 prose prose-invert max-w-none [&>p]:mb-3"
+              dangerouslySetInnerHTML={{ __html: movie.description }}
+            />
+          </div>
