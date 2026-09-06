@@ -219,3 +219,9 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
           </div>
         </div>
       </div>
+
+      {/* Cast Section */}
+      {movie.cast && movie.cast.length > 0 && (
+        <div className="space-y-4">
+          <h3 className="text-lg font-bold text-slate-300 flex items-center gap-2">
+            <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
