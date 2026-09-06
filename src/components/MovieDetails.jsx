@@ -144,3 +144,16 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 {genre}
               </span>
             ))}
+            {movie.genres.length === 0 && (
+              <span className="px-3.5 py-1 bg-slate-900 border border-slate-800 text-slate-400 text-xs font-semibold rounded-full">
+                General
+              </span>
+            )}
+          </div>
+
+          {/* Metadata Grid */}
+          <div className="grid grid-cols-2 gap-4 py-4 px-4 bg-slate-950/40 rounded-2xl border border-slate-900/60 text-xs md:text-sm">
+            <div>
+              <p className="text-slate-500 font-medium">Duration</p>
+              <p className="text-slate-200 font-semibold mt-0.5">{movie.runtime}</p>
+            </div>
