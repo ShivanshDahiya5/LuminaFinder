@@ -9,7 +9,7 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
 
   useEffect(() => {
     let active = true
-    
+
     async function fetchDetails() {
       setIsLoading(true)
       setError(null)
@@ -33,7 +33,7 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
     if (id) {
       fetchDetails()
     }
-    
+
     return () => {
       active = false
     }
@@ -55,7 +55,7 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
           <h3 className="text-lg font-bold text-slate-300">Error Loading Show</h3>
           <p className="text-slate-500 text-sm mt-1">{error || 'Could not find details'}</p>
         </div>
-         <a
+        <a
           href="#/"
           className="inline-block px-5 py-2.5 bg-slate-900 border border-slate-800 text-slate-300 hover:text-white rounded-xl text-xs font-semibold transition-colors"
         >
@@ -93,7 +93,7 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 alt={movie.title}
                 className="w-full h-full object-cover"
               />
-              ) : (
+            ) : (
               <div className="w-full h-full flex flex-col items-center justify-center text-slate-600 bg-slate-900/60">
                 <svg className="w-16 h-16 mb-2 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -103,11 +103,10 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
             )}
 
             {/* Status Indicator */}
-            <span className={`absolute bottom-3 right-3 px-2.5 py-1 rounded-lg text-[9px] font-bold uppercase tracking-wider border ${
-              movie.status === 'Running'
-              ? 'bg-emerald-950/90 text-emerald-300 border-emerald-800/40'
+            <span className={`absolute bottom-3 right-3 px-2.5 py-1 rounded-lg text-[9px] font-bold uppercase tracking-wider border ${movie.status === 'Running'
+                ? 'bg-emerald-950/90 text-emerald-300 border-emerald-800/40'
                 : 'bg-slate-950/90 text-slate-400 border-slate-800/40'
-            }`}>
+              }`}>
               {movie.status}
             </span>
           </div>
@@ -129,7 +128,7 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 </div>
               )}
             </div>
-             <p className="text-sm text-slate-400 font-medium">
+            <p className="text-sm text-slate-400 font-medium">
               Premiered: <span className="text-slate-300">{movie.premiered}</span>
             </p>
           </div>
@@ -191,11 +190,10 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                   })
                 }
               }}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-102 active:scale-98 cursor-pointer ${
-                favorited
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-102 active:scale-98 cursor-pointer ${favorited
                   ? 'bg-rose-500/10 border border-rose-500/30 text-rose-500 hover:bg-rose-500 hover:text-white'
                   : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-purple-500/10'
-              }`}
+                }`}
             >
               <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
@@ -236,7 +234,7 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-950 border border-slate-800">
                   {member.image ? (
                     <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
-                    ) : (
+                  ) : (
                     <div className="w-full h-full flex items-center justify-center text-slate-650 bg-slate-900 text-xs font-bold">
                       {member.name.charAt(0)}
                     </div>
