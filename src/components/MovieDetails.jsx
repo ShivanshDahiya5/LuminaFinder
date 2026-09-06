@@ -112,3 +112,12 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
             </span>
           </div>
         </div>
+
+        {/* Content Column */}
+        <div className="flex-1 space-y-6">
+          {/* Header Title & Rating */}
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <h2 className="text-2xl md:text-4xl font-extrabold text-slate-100 tracking-tight">
+                {movie.title}
+              </h2>
