@@ -210,3 +210,12 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-5 py-3 border border-slate-800 bg-slate-950 hover:bg-slate-900 hover:border-slate-700 text-slate-300 hover:text-white rounded-xl font-bold text-sm transition-all duration-300"
               >
+                <span>Visit Official Site</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
