@@ -246,3 +246,17 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                   <p className="text-[10px] font-bold text-slate-200 line-clamp-1" title={member.name}>
                     {member.name}
                   </p>
+                  <p className="text-[9px] text-slate-500 line-clamp-1" title={member.character}>
+                    as {member.character}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default MovieDetails
