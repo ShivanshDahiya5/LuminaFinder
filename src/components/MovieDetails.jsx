@@ -121,3 +121,11 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
               <h2 className="text-2xl md:text-4xl font-extrabold text-slate-100 tracking-tight">
                 {movie.title}
               </h2>
+              {movie.rating && (
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-950 border border-slate-800/60 rounded-xl shadow-md">
+                  <span className="text-amber-400 font-bold">⭐</span>
+                  <span className="text-sm font-extrabold text-slate-200">{movie.rating}</span>
+                  <span className="text-[10px] text-slate-500 font-semibold mt-0.5">/10</span>
+                </div>
+              )}
+            </div>
