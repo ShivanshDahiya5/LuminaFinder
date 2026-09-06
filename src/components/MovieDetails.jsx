@@ -236,3 +236,13 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-950 border border-slate-800">
                   {member.image ? (
                     <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                    ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-650 bg-slate-900 text-xs font-bold">
+                      {member.name.charAt(0)}
+                    </div>
+                  )}
+                </div>
+                <div className="space-y-0.5 w-full">
+                  <p className="text-[10px] font-bold text-slate-200 line-clamp-1" title={member.name}>
+                    {member.name}
+                  </p>
