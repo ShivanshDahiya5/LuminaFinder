@@ -104,8 +104,8 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
 
             {/* Status Indicator */}
             <span className={`absolute bottom-3 right-3 px-2.5 py-1 rounded-lg text-[9px] font-bold uppercase tracking-wider border ${movie.status === 'Running'
-                ? 'bg-emerald-950/90 text-emerald-300 border-emerald-800/40'
-                : 'bg-slate-950/90 text-slate-400 border-slate-800/40'
+              ? 'bg-emerald-950/90 text-emerald-300 border-emerald-800/40'
+              : 'bg-slate-950/90 text-slate-400 border-slate-800/40'
               }`}>
               {movie.status}
             </span>
@@ -191,8 +191,8 @@ function MovieDetails({ id, isFavorite, addFavorite, removeFavorite }) {
                 }
               }}
               className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-102 active:scale-98 cursor-pointer ${favorited
-                  ? 'bg-rose-500/10 border border-rose-500/30 text-rose-500 hover:bg-rose-500 hover:text-white'
-                  : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-purple-500/10'
+                ? 'bg-rose-500/10 border border-rose-500/30 text-rose-500 hover:bg-rose-500 hover:text-white'
+                : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-purple-500/10'
                 }`}
             >
               <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 20 20">
