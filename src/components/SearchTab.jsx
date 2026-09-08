@@ -166,3 +166,15 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
     sessionStorage.removeItem('search-query')
     sessionStorage.removeItem('search-results')
   }
+
+  return (
+    <div className="w-full space-y-8 max-w-5xl mx-auto">
+      {/* Hero Header */}
+      <div className="text-center space-y-4 max-w-3xl mx-auto mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs font-semibold">
+          <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+          Worldwide Multi-Source Catalog Activated
+        </div>
+        <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent leading-tight">
+          Find movies, shows & books worldwide.
+        </h1>
