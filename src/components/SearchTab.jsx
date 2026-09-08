@@ -202,3 +202,12 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
               </svg>
               Movies & TV Shows
             </button>
+            <button
+              id="type-book-btn"
+              onClick={() => handleTypeChange('book')}
+              className={`flex items-center justify-center gap-2 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${
+                mediaType === 'book'
+                  ? 'bg-slate-900 border border-slate-800 text-blue-400 shadow-md'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
