@@ -158,3 +158,11 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
     setQuery(suggestion)
     performSearch(suggestion, mediaType, region, lang)
   }
+
+  const clearSearch = () => {
+    setQuery('')
+    setResults([])
+    setHasSearched(false)
+    sessionStorage.removeItem('search-query')
+    sessionStorage.removeItem('search-results')
+  }
