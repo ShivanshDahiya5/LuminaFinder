@@ -145,3 +145,16 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
       performSearch(query, 'movie', val, lang)
     }
   }
+
+  const handleLangChange = (e) => {
+    const val = e.target.value
+    setLang(val)
+    if (query.trim() && mediaType === 'book') {
+      performSearch(query, 'book', region, val)
+    }
+  }
+
+  const handleSuggestionClick = (suggestion) => {
+    setQuery(suggestion)
+    performSearch(suggestion, mediaType, region, lang)
+  }
