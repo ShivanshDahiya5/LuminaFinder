@@ -67,3 +67,18 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
       sessionStorage.removeItem('search-results')
     }
   }, [initialShowTrending])
+
+  const performSearch = useCallback(async (searchQuery, type, selectedRegion = region, selectedLang = lang) => {
+    if (!searchQuery.trim()) return
+    
+    setIsLoading(true)
+    setError(null)
+    setHasSearched(true)
+    
+    try {
+      let data = []
+      if (type === 'movie') {
+        data = await searchMovies(searchQuery, selectedRegion)
+      } else {
+        data = await searchBooks(searchQuery, selectedLang)
+      }
