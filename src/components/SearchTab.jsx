@@ -50,3 +50,9 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
       return []
     }
   })
+
+   const [trending, setTrending] = useState({ heroSpotlight: null, movies: [], books: [], anime: [] })
+  const [isLoading, setIsLoading] = useState(false)
+  const [isLoadingTrending, setIsLoadingTrending] = useState(true)
+  const [error, setError] = useState(null)
+  const [hasSearched, setHasSearched] = useState(() => initialShowTrending ? false : !!sessionStorage.getItem('search-query'))
