@@ -101,3 +101,17 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
       .catch((e) => console.error('Failed to load trending data:', e))
       .finally(() => setIsLoadingTrending(false))
   }, [])
+
+  // Auto-fetch if query exists on mount without cached results
+  useEffect(() => {
+    let active = true
+    const cachedResults = sessionStorage.getItem('search-results')
+    if (!cachedResults && query) {
+      Promise.resolve().then(() => {
+        if (active) performSearch(query, mediaType, region, lang)
+      })
+    }
+    return () => {
+      active = false
+    }
+  }, [query, mediaType, region, lang, performSearch])
