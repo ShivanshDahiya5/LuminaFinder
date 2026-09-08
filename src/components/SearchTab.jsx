@@ -56,3 +56,14 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
   const [isLoadingTrending, setIsLoadingTrending] = useState(true)
   const [error, setError] = useState(null)
   const [hasSearched, setHasSearched] = useState(() => initialShowTrending ? false : !!sessionStorage.getItem('search-query'))
+
+  // Reset to trending mode if explicitly requested by navigation
+  useEffect(() => {
+    if (initialShowTrending) {
+      setQuery('')
+      setResults([])
+      setHasSearched(false)
+      sessionStorage.removeItem('search-query')
+      sessionStorage.removeItem('search-results')
+    }
+  }, [initialShowTrending])
