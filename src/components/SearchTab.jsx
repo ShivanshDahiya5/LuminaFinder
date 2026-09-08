@@ -40,3 +40,13 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
   const [region, setRegion] = useState('all')
   const [lang, setLang] = useState('all')
   const [trendingCategory, setTrendingCategory] = useState('all')
+
+  const [results, setResults] = useState(() => {
+    if (initialShowTrending) return []
+    try {
+      const cached = sessionStorage.getItem('search-results')
+      return cached ? JSON.parse(cached) : []
+    } catch {
+      return []
+    }
+  })
