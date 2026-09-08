@@ -191,3 +191,14 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
             <button
               id="type-movie-btn"
               onClick={() => handleTypeChange('movie')}
+              className={`flex items-center justify-center gap-2 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${
+                mediaType === 'movie'
+                  ? 'bg-slate-900 border border-slate-800 text-purple-400 shadow-md'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+              </svg>
+              Movies & TV Shows
+            </button>
