@@ -115,3 +115,14 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
       active = false
     }
   }, [query, mediaType, region, lang, performSearch])
+
+  // Sync state to sessionStorage
+  useEffect(() => {
+    sessionStorage.setItem('search-query', query)
+    sessionStorage.setItem('search-type', mediaType)
+  }, [query, mediaType])
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault()
+    performSearch(query, mediaType, region, lang)
+  }
