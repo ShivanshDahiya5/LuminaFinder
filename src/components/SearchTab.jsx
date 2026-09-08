@@ -178,3 +178,16 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
         <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent leading-tight">
           Find movies, shows & books worldwide.
         </h1>
+        <p className="text-slate-400 text-sm md:text-base">
+          Search iTunes, TVMaze, Google Books, and Open Library simultaneously with region and language controls.
+        </p>
+      </div>
+
+      {/* Control Panel: Type Switcher & Search Form */}
+      <div className="glass-panel p-5 sm:p-6 rounded-3xl space-y-4 border border-slate-800 shadow-xl">
+        {/* Toggle Pills & Region/Lang Filters */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="grid grid-cols-2 bg-slate-950 p-1.5 rounded-2xl w-full sm:w-[320px] border border-slate-800/60">
+            <button
+              id="type-movie-btn"
+              onClick={() => handleTypeChange('movie')}
