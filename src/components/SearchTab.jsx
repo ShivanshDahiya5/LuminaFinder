@@ -82,3 +82,22 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
       } else {
         data = await searchBooks(searchQuery, selectedLang)
       }
+      setResults(data)
+      sessionStorage.setItem('search-results', JSON.stringify(data))
+    } catch (err) {
+      console.error(err)
+      setError('Failed to fetch search results from worldwide APIs. Please try again.')
+      setResults([])
+      sessionStorage.removeItem('search-results')
+    } finally {
+      setIsLoading(false)
+    }
+  }, [region, lang])
+
+  // Load trending media on initial mount
+  useEffect(() => {
+    getTrending()
+      .then((data) => setTrending(data))
+      .catch((e) => console.error('Failed to load trending data:', e))
+      .finally(() => setIsLoadingTrending(false))
+  }, [])
