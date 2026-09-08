@@ -32,3 +32,11 @@ const LANG_OPTIONS = [
   { label: '🇮🇳 Hindi (हिन्दी)', value: 'hi' },
   { label: '🇨🇳 Chinese (中文)', value: 'zh' }
 ]
+
+function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, removeFavorite }) {
+  // Retrieve search state from sessionStorage if available
+  const [query, setQuery] = useState(() => initialShowTrending ? '' : (sessionStorage.getItem('search-query') || ''))
+  const [mediaType, setMediaType] = useState(() => sessionStorage.getItem('search-type') || 'movie')
+  const [region, setRegion] = useState('all')
+  const [lang, setLang] = useState('all')
+  const [trendingCategory, setTrendingCategory] = useState('all')
