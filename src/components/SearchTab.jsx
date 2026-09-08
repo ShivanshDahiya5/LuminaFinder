@@ -126,3 +126,22 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
     e.preventDefault()
     performSearch(query, mediaType, region, lang)
   }
+
+  const handleTypeChange = (type) => {
+    setMediaType(type)
+    setResults([])
+    sessionStorage.removeItem('search-results')
+    setHasSearched(false)
+    
+    if (query.trim()) {
+      performSearch(query, type, region, lang)
+    }
+  }
+
+  const handleRegionChange = (e) => {
+    const val = e.target.value
+    setRegion(val)
+    if (query.trim() && mediaType === 'movie') {
+      performSearch(query, 'movie', val, lang)
+    }
+  }
