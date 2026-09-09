@@ -217,3 +217,13 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
               Books & Literature
             </button>
           </div>
+
+          {/* Region / Language Dropdown */}
+          <div className="w-full sm:w-auto flex items-center gap-2">
+            <span className="text-xs text-slate-400 font-medium">Filter:</span>
+            {mediaType === 'movie' ? (
+              <select
+                value={region}
+                onChange={handleRegionChange}
+                className="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs font-semibold text-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500/30"
+              >
