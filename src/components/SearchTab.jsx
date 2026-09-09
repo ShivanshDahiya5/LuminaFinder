@@ -320,3 +320,18 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
             {error}
           </div>
         )}
+
+        {isLoading ? (
+          <SkeletonGrid count={8} />
+        ) : (
+          <>
+            {results.length > 0 ? (
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-lg font-bold text-slate-200">
+                    Search Results ({results.length})
+                  </h2>
+                  <span className="text-xs text-slate-500">
+                    Showing multi-source global data
+                  </span>
+                </div>
