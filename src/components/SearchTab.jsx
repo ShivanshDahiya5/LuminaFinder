@@ -277,3 +277,12 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
               </button>
             )}
           </div>
+          <button
+            id="search-submit-btn"
+            type="submit"
+            disabled={!query.trim()}
+            className="px-6 py-3.5 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 disabled:from-slate-850 disabled:to-slate-850 disabled:text-slate-500 text-white rounded-2xl font-semibold text-sm shadow-lg hover:shadow-purple-500/20 active:scale-98 transition-all duration-300 shrink-0"
+          >
+            Search
+          </button>
+        </form>
