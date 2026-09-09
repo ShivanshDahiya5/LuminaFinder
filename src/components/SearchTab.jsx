@@ -370,3 +370,10 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                               {item.description}
                             </p>
                           </div>
+
+                          {/* Top Badges */}
+                          {item.rating && (
+                            <span className="absolute top-2 left-2 px-2 py-0.5 bg-slate-950/85 backdrop-blur-md rounded-lg text-[10px] font-bold text-amber-400 border border-slate-880 flex items-center gap-1">
+                              ⭐ {item.rating}
+                            </span>
+                          )}
