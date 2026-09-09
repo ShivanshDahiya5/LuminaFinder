@@ -286,3 +286,10 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
             Search
           </button>
         </form>
+
+        {/* Suggestions tags */}
+        <div className="flex flex-wrap items-center justify-center gap-2 text-xs pt-1 max-w-3xl mx-auto">
+          <span className="text-slate-500 font-medium mr-1">
+            {mediaType === 'movie' && region === 'in' ? '🎬 Bollywood Picks:' : 'Trending Topics:'}
+          </span>
+          {(mediaType === 'movie' && region === 'in' ? BOLLYWOOD_SUGGESTIONS : SUGGESTIONS[mediaType]).map((tag) => (
