@@ -265,3 +265,15 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
               }
               className="w-full pl-12 pr-10 py-3.5 bg-slate-950/80 border border-slate-800 rounded-2xl text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 transition-all duration-300"
             />
+            {query && (
+              <button
+                type="button"
+                onClick={clearSearch}
+                className="absolute inset-y-0 right-3 flex items-center text-slate-500 hover:text-slate-300"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
