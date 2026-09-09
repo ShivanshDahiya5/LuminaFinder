@@ -345,3 +345,15 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                         onClick={() => {
                           window.location.hash = `#/${item.type}/${item.id}`
                         }}
+                        >
+                        {/* Image / Thumbnail */}
+                        <div className="aspect-[2/3] w-full rounded-xl bg-slate-950 overflow-hidden relative border border-slate-800/40">
+                          {item.image ? (
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex flex-col items-center justify-center text-slate-600 bg-slate-900/60 p-2 text-center">
