@@ -386,3 +386,14 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                             {item.source || (item.type === 'movie' ? 'Movie' : 'Book')}
                           </span>
                         </div>
+
+                        {/* Title & Info */}
+                        <div className="mt-3 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="text-sm font-semibold text-slate-200 line-clamp-1 group-hover:text-white transition-colors">
+                              {item.title}
+                            </h3>
+                            <p className="text-xs text-slate-400 line-clamp-1 mt-0.5 font-light">
+                              {item.subtitle}
+                            </p>
+                          </div>
