@@ -293,3 +293,13 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
             {mediaType === 'movie' && region === 'in' ? '🎬 Bollywood Picks:' : 'Trending Topics:'}
           </span>
           {(mediaType === 'movie' && region === 'in' ? BOLLYWOOD_SUGGESTIONS : SUGGESTIONS[mediaType]).map((tag) => (
+            <button
+              key={tag}
+              type="button"
+              onClick={() => handleSuggestionClick(tag)}
+              className="px-3 py-1.5 rounded-full border border-slate-800/80 bg-slate-950/40 text-slate-400 hover:text-slate-100 hover:border-purple-500/40 hover:bg-slate-900 transition-all duration-200"
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
