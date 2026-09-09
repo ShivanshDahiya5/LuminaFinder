@@ -303,3 +303,20 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
             </button>
           ))}
         </div>
+
+        {/* India/Bollywood filter active notice */}
+        {mediaType === 'movie' && region === 'in' && (
+          <div className="flex items-center justify-center gap-2 text-[11px] text-amber-400/80 pt-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+            India & Bollywood filter active — searching iTunes India storefront + Hindi content
+          </div>
+        )}
+      </div>
+
+      {/* Search Results / Trending Showcase */}
+      <div className="space-y-6">
+        {error && (
+          <div className="p-4 bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm text-center rounded-2xl">
+            {error}
+          </div>
+        )}
