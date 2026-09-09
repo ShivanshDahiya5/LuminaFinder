@@ -397,3 +397,19 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                               {item.subtitle}
                             </p>
                           </div>
+
+                          {/* Card Footer: Genre & Favorite */}
+                          <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-900">
+                            <span className="text-[10px] text-slate-500 line-clamp-1 uppercase tracking-wider font-semibold max-w-[70%]">
+                              {item.genres[0] || 'General'}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                if (favorited) {
+                                  removeFavorite(item.id, item.type);
+                                } else {
+                                  addFavorite(item);
+                                }
+                              }}
