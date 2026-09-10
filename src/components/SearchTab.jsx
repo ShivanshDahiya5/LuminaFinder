@@ -490,3 +490,12 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                     ))}
                   </div>
                 </div>
+
+                {isLoadingTrending ? (
+                  <SkeletonGrid count={8} />
+                ) : (
+                  <div className="space-y-10">
+                    {/* Featured Spotlight Banner */}
+                    {trending.heroSpotlight && (trendingCategory === 'all' || trendingCategory === 'movies') && (
+                      <div className="relative rounded-3xl overflow-hidden border border-amber-500/30 bg-gradient-to-r from-slate-900 via-purple-950/40 to-slate-950 p-6 md:p-8 shadow-2xl">
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
