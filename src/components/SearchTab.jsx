@@ -530,3 +530,15 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                   ⭐ {trending.heroSpotlight.rating}
                                 </span>
                               )}
+                              <span className="px-2.5 py-1 bg-slate-900/80 text-slate-300 border border-slate-800 rounded-full text-xs font-semibold">
+                                {trending.heroSpotlight.originCountry || 'Worldwide'}
+                              </span>
+                            </div>
+
+                            <h3 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                              {trending.heroSpotlight.title}
+                            </h3>
+
+                            <p className="text-xs md:text-sm text-slate-300 line-clamp-3 leading-relaxed font-light">
+                              {trending.heroSpotlight.description}
+                            </p>
