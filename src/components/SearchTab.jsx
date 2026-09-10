@@ -549,3 +549,12 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                               >
                                 View Details & Cast
                               </button>
+                              <button
+                                onClick={() => {
+                                  const favorited = isFavorite(trending.heroSpotlight.id, trending.heroSpotlight.type)
+                                  favorited 
+                                    ? removeFavorite(trending.heroSpotlight.id, trending.heroSpotlight.type) 
+                                    : addFavorite(trending.heroSpotlight)
+                                }}
+                                className="px-4 py-2.5 bg-slate-900/80 hover:bg-slate-850 border border-slate-700/80 text-slate-200 font-semibold rounded-xl text-xs transition-all flex items-center gap-2"
+                              >
