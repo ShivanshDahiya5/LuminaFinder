@@ -581,3 +581,14 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                           </h3>
                           <span className="text-xs text-slate-500">iTunes & TVMaze Charts</span>
                         </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-5">
+                          {trending.movies.map((item, idx) => {
+                            const favorited = isFavorite(item.id, item.type)
+                            return (
+                              <div
+                                key={item.id}
+                                className="glass-card rounded-2xl p-3 flex flex-col justify-between cursor-pointer border border-slate-850 hover:border-purple-500/40 transition-all h-[360px] group relative"
+                                onClick={() => {
+                                  window.location.hash = `#/${item.type}/${item.id}`
+                                }}
+                              >
