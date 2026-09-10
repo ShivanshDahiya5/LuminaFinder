@@ -438,3 +438,18 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-300">No matching titles found</h3>
+                    <p className="text-slate-500 text-sm mt-1">
+                      Try broadening your search query or selecting "Worldwide All" in the country/language filter.
+                    </p>
+                  </div>
+                  <button
+                    onClick={clearSearch}
+                    className="px-4 py-2 border border-slate-800 bg-slate-950 hover:bg-slate-900 rounded-xl text-xs font-semibold text-slate-300 transition-colors"
+                  >
+                    Clear Search
+                  </button>
+                </div>
+              )
+            )}
