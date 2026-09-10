@@ -499,3 +499,14 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                     {trending.heroSpotlight && (trendingCategory === 'all' || trendingCategory === 'movies') && (
                       <div className="relative rounded-3xl overflow-hidden border border-amber-500/30 bg-gradient-to-r from-slate-900 via-purple-950/40 to-slate-950 p-6 md:p-8 shadow-2xl">
                         <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                          <div 
+                            className="w-40 sm:w-48 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 shrink-0 relative group cursor-pointer"
+                            onClick={() => window.location.hash = `#/${trending.heroSpotlight.type}/${trending.heroSpotlight.id}`}
+                          >
+                            {trending.heroSpotlight.image ? (
+                              <img 
+                                src={trending.heroSpotlight.image} 
+                                alt={trending.heroSpotlight.title} 
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                              />
