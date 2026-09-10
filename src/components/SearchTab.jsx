@@ -412,4 +412,17 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                 } else {
                                   addFavorite(item);
                                 }
-                              }}
+                              }}className={`p-1.5 rounded-lg border transition-all duration-300 hover:scale-110 active:scale-95 ${
+                                favorited
+                                  ? 'bg-rose-500/10 border-rose-500/30 text-rose-500'
+                                  : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-rose-400 hover:border-rose-500/30'
+                              }`}
+                              title={favorited ? 'Remove from library' : 'Save to library'}
+                            >
+                              <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
