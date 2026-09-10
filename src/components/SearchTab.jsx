@@ -519,3 +519,14 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                               👑 #1 SPOTLIGHT
                             </span>
                           </div>
+
+                          <div className="flex-1 space-y-3 text-left">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded-full text-xs font-bold uppercase tracking-wider">
+                                🔥 Global #1 Trending
+                              </span>
+                              {trending.heroSpotlight.rating && (
+                                <span className="px-2.5 py-1 bg-slate-900/80 text-amber-400 border border-slate-800 rounded-full text-xs font-bold flex items-center gap-1">
+                                  ⭐ {trending.heroSpotlight.rating}
+                                </span>
+                              )}
