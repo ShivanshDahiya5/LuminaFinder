@@ -476,3 +476,17 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                       { id: 'books', label: '📚 Bestsellers' },
                       { id: 'anime', label: '🎌 Anime Hits' }
                     ].map((cat) => (
+                      <button
+                        key={cat.id}
+                        onClick={() => setTrendingCategory(cat.id)}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                          trendingCategory === cat.id
+                            ? 'bg-gradient-to-r from-amber-500/20 to-purple-500/20 border border-amber-500/40 text-amber-300 shadow-sm'
+                            : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                        }`}
+                      >
+                        {cat.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
