@@ -467,3 +467,12 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                       Real-time top ranked movies, TV series, literature & anime across worldwide APIs
                     </p>
                   </div>
+
+                  {/* Category Filter Pills */}
+                  <div className="flex flex-wrap items-center gap-1.5 bg-slate-950 p-1 rounded-2xl border border-slate-850">
+                    {[
+                      { id: 'all', label: '🌟 All Highlights' },
+                      { id: 'movies', label: '🎬 Movies & TV' },
+                      { id: 'books', label: '📚 Bestsellers' },
+                      { id: 'anime', label: '🎌 Anime Hits' }
+                    ].map((cat) => (
