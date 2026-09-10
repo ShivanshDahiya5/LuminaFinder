@@ -542,3 +542,10 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                             <p className="text-xs md:text-sm text-slate-300 line-clamp-3 leading-relaxed font-light">
                               {trending.heroSpotlight.description}
                             </p>
+                            <div className="flex flex-wrap items-center gap-3 pt-2">
+                              <button
+                                onClick={() => window.location.hash = `#/${trending.heroSpotlight.type}/${trending.heroSpotlight.id}`}
+                                className="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-slate-950 font-bold rounded-xl text-xs shadow-lg shadow-amber-500/20 transition-all flex items-center gap-2"
+                              >
+                                View Details & Cast
+                              </button>
