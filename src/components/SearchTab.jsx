@@ -510,3 +510,12 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                 alt={trending.heroSpotlight.title} 
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                               />
+                              ) : (
+                              <div className="w-full h-full bg-slate-900 flex items-center justify-center text-xs text-slate-500">
+                                {trending.heroSpotlight.title}
+                              </div>
+                            )}
+                            <span className="absolute top-2 left-2 px-2.5 py-1 bg-amber-500 text-slate-950 font-black text-[10px] rounded-lg shadow-md flex items-center gap-1">
+                              👑 #1 SPOTLIGHT
+                            </span>
+                          </div>
