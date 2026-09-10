@@ -453,3 +453,17 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                 </div>
               )
             )}
+
+            {/* Default State / Trending Tab: Worldwide Trending Highlights Hub */}
+            {!hasSearched && (
+              <div className="space-y-8 pt-2">
+                {/* Header Title & Category Tabs */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-900 pb-4">
+                  <div>
+                    <h2 className="text-2xl font-black text-slate-100 flex items-center gap-2 tracking-tight">
+                      <span className="text-amber-400">🔥</span> Global Trending Highlights
+                    </h2>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Real-time top ranked movies, TV series, literature & anime across worldwide APIs
+                    </p>
+                  </div>
