@@ -426,3 +426,15 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                           </div>
                         </div>
                       </div>
+                      )
+                  })}
+                </div>
+              </div>
+            ) : (
+              hasSearched && (
+                <div className="glass-panel text-center py-16 px-4 rounded-3xl max-w-md mx-auto space-y-4 border border-slate-800">
+                  <div className="w-16 h-16 bg-slate-950 rounded-2xl flex items-center justify-center mx-auto border border-slate-800">
+                    <svg className="w-8 h-8 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
