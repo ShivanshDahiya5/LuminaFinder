@@ -666,3 +666,15 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                   ) : (
                                     <div className="w-full h-full flex items-center justify-center text-xs text-slate-500">No Cover</div>
                                   )}
+
+                                  {/* Rank Badge */}
+                                  <span className="absolute top-2 left-2 px-2 py-0.5 bg-slate-950/90 backdrop-blur-md border border-slate-800 rounded-lg text-[10px] font-black text-amber-400 shadow">
+                                    #{idx + 1}
+                                  </span>
+
+                                  {item.rating && (
+                                    <span className="absolute top-2 right-2 px-2 py-0.5 bg-slate-950/80 rounded text-[9px] text-amber-400 font-bold border border-slate-800">
+                                      ⭐ {item.rating}
+                                    </span>
+                                  )}
+                                </div>
