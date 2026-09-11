@@ -743,3 +743,10 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                     Anime
                                   </span>
                                 </div>
+                                <div className="mt-2.5 flex-1 flex flex-col justify-between">
+                                  <div>
+                                    <h4 className="text-xs font-bold text-slate-200 line-clamp-1 group-hover:text-white transition-colors">{item.title}</h4>
+                                    <p className="text-[10px] text-slate-400 line-clamp-1 mt-0.5">{item.subtitle}</p>
+                                  </div>
+                                  <div className="flex items-center justify-between pt-2 border-t border-slate-900 mt-2">
+                                    <span className="text-[9px] font-semibold text-slate-500 uppercase tracking-wider">{item.genres[0] || 'Anime'}</span>
