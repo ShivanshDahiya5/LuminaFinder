@@ -730,3 +730,16 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                               >
                                 <div className="aspect-[2/3] w-full rounded-xl bg-slate-950 overflow-hidden relative">
                                   {item.image ? (
+                                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                                  ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-xs text-slate-500">No Image</div>
+                                  )}
+
+                                  <span className="absolute top-2 left-2 px-2 py-0.5 bg-slate-950/90 backdrop-blur-md border border-slate-800 rounded-lg text-[10px] font-black text-amber-400 shadow">
+                                    #{idx + 1}
+                                  </span>
+
+                                  <span className="absolute top-2 right-2 px-2 py-0.5 bg-rose-950/90 rounded text-[9px] font-bold text-rose-300 border border-rose-800/30">
+                                    Anime
+                                  </span>
+                                </div>
