@@ -706,3 +706,14 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                         </div>
                       </div>
                     )}
+
+                    {/* Anime & Asian Drama Section */}
+                    {(trendingCategory === 'all' || trendingCategory === 'anime') && trending.anime && trending.anime.length > 0 && (
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <h3 className="text-base font-bold text-rose-400 flex items-center gap-2">
+                            <span className="text-rose-400 text-sm">🎌</span>
+                            Trending Anime & Asian Drama
+                          </h3>
+                          <span className="text-xs text-slate-500">TVMaze International</span>
+                        </div>
