@@ -659,4 +659,10 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                 onClick={() => {
                                   window.location.hash = `#/${item.type}/${item.id}`
                                 }}
-                              ></div>
+                              >
+                                <div className="aspect-[2/3] w-full rounded-xl bg-slate-950 overflow-hidden relative">
+                                  {item.image ? (
+                                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                                  ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-xs text-slate-500">No Cover</div>
+                                  )}
