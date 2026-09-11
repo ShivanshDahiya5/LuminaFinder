@@ -51,7 +51,7 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
     }
   })
 
-   const [trending, setTrending] = useState({ heroSpotlight: null, movies: [], books: [], anime: [] })
+  const [trending, setTrending] = useState({ heroSpotlight: null, movies: [], books: [], anime: [] })
   const [isLoading, setIsLoading] = useState(false)
   const [isLoadingTrending, setIsLoadingTrending] = useState(true)
   const [error, setError] = useState(null)
@@ -70,11 +70,11 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
 
   const performSearch = useCallback(async (searchQuery, type, selectedRegion = region, selectedLang = lang) => {
     if (!searchQuery.trim()) return
-    
+
     setIsLoading(true)
     setError(null)
     setHasSearched(true)
-    
+
     try {
       let data = []
       if (type === 'movie') {
@@ -132,7 +132,7 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
     setResults([])
     sessionStorage.removeItem('search-results')
     setHasSearched(false)
-    
+
     if (query.trim()) {
       performSearch(query, type, region, lang)
     }
@@ -191,11 +191,10 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
             <button
               id="type-movie-btn"
               onClick={() => handleTypeChange('movie')}
-              className={`flex items-center justify-center gap-2 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${
-                mediaType === 'movie'
+              className={`flex items-center justify-center gap-2 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${mediaType === 'movie'
                   ? 'bg-slate-900 border border-slate-800 text-purple-400 shadow-md'
                   : 'text-slate-400 hover:text-slate-200'
-              }`}
+                }`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
@@ -205,11 +204,10 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
             <button
               id="type-book-btn"
               onClick={() => handleTypeChange('book')}
-              className={`flex items-center justify-center gap-2 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${
-                mediaType === 'book'
+              className={`flex items-center justify-center gap-2 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${mediaType === 'book'
                   ? 'bg-slate-900 border border-slate-800 text-blue-400 shadow-md'
                   : 'text-slate-400 hover:text-slate-200'
-              }`}
+                }`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -345,7 +343,7 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                         onClick={() => {
                           window.location.hash = `#/${item.type}/${item.id}`
                         }}
-                        >
+                      >
                         {/* Image / Thumbnail */}
                         <div className="aspect-[2/3] w-full rounded-xl bg-slate-950 overflow-hidden relative border border-slate-800/40">
                           {item.image ? (
@@ -363,7 +361,7 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                               <span className="text-[10px] uppercase font-semibold tracking-wider">{item.title}</span>
                             </div>
                           )}
-                          
+
                           {/* Hover Details Overlay */}
                           <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
                             <p className="text-[10px] text-slate-300 line-clamp-4 leading-relaxed font-light">
@@ -378,11 +376,10 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                             </span>
                           )}
 
-                          <span className={`absolute top-2 right-2 px-2 py-0.5 rounded-lg text-[9px] font-bold uppercase tracking-wider border ${
-                            item.type === 'movie'
+                          <span className={`absolute top-2 right-2 px-2 py-0.5 rounded-lg text-[9px] font-bold uppercase tracking-wider border ${item.type === 'movie'
                               ? 'bg-purple-950/90 text-purple-300 border-purple-800/40'
                               : 'bg-blue-950/90 text-blue-300 border-blue-800/40'
-                          }`}>
+                            }`}>
                             {item.source || (item.type === 'movie' ? 'Movie' : 'Book')}
                           </span>
                         </div>
@@ -412,11 +409,10 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                 } else {
                                   addFavorite(item);
                                 }
-                              }}className={`p-1.5 rounded-lg border transition-all duration-300 hover:scale-110 active:scale-95 ${
-                                favorited
+                              }} className={`p-1.5 rounded-lg border transition-all duration-300 hover:scale-110 active:scale-95 ${favorited
                                   ? 'bg-rose-500/10 border-rose-500/30 text-rose-500'
                                   : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-rose-400 hover:border-rose-500/30'
-                              }`}
+                                }`}
                               title={favorited ? 'Remove from library' : 'Save to library'}
                             >
                               <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
@@ -426,7 +422,7 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                           </div>
                         </div>
                       </div>
-                      )
+                    )
                   })}
                 </div>
               </div>
@@ -479,11 +475,10 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                       <button
                         key={cat.id}
                         onClick={() => setTrendingCategory(cat.id)}
-                        className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-                          trendingCategory === cat.id
+                        className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${trendingCategory === cat.id
                             ? 'bg-gradient-to-r from-amber-500/20 to-purple-500/20 border border-amber-500/40 text-amber-300 shadow-sm'
                             : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
-                        }`}
+                          }`}
                       >
                         {cat.label}
                       </button>
@@ -500,17 +495,17 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                       <div className="relative rounded-3xl overflow-hidden border border-amber-500/30 bg-gradient-to-r from-slate-900 via-purple-950/40 to-slate-950 p-6 md:p-8 shadow-2xl">
                         <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
                         <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                          <div 
+                          <div
                             className="w-40 sm:w-48 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 shrink-0 relative group cursor-pointer"
                             onClick={() => window.location.hash = `#/${trending.heroSpotlight.type}/${trending.heroSpotlight.id}`}
                           >
                             {trending.heroSpotlight.image ? (
-                              <img 
-                                src={trending.heroSpotlight.image} 
-                                alt={trending.heroSpotlight.title} 
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                              <img
+                                src={trending.heroSpotlight.image}
+                                alt={trending.heroSpotlight.title}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
-                              ) : (
+                            ) : (
                               <div className="w-full h-full bg-slate-900 flex items-center justify-center text-xs text-slate-500">
                                 {trending.heroSpotlight.title}
                               </div>
@@ -552,8 +547,8 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                               <button
                                 onClick={() => {
                                   const favorited = isFavorite(trending.heroSpotlight.id, trending.heroSpotlight.type)
-                                  favorited 
-                                    ? removeFavorite(trending.heroSpotlight.id, trending.heroSpotlight.type) 
+                                  favorited
+                                    ? removeFavorite(trending.heroSpotlight.id, trending.heroSpotlight.type)
                                     : addFavorite(trending.heroSpotlight)
                                 }}
                                 className="px-4 py-2.5 bg-slate-900/80 hover:bg-slate-850 border border-slate-700/80 text-slate-200 font-semibold rounded-xl text-xs transition-all flex items-center gap-2"
@@ -620,9 +615,8 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                         e.stopPropagation()
                                         favorited ? removeFavorite(item.id, item.type) : addFavorite(item)
                                       }}
-                                      className={`p-1.5 rounded-lg border transition-all ${
-                                        favorited ? 'bg-rose-500/10 border-rose-500/30 text-rose-500' : 'bg-slate-950 border-slate-800 text-slate-500 hover:text-rose-400'
-                                      }`}
+                                      className={`p-1.5 rounded-lg border transition-all ${favorited ? 'bg-rose-500/10 border-rose-500/30 text-rose-500' : 'bg-slate-950 border-slate-800 text-slate-500 hover:text-rose-400'
+                                        }`}
                                     >
                                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
@@ -690,9 +684,8 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                         e.stopPropagation()
                                         favorited ? removeFavorite(item.id, item.type) : addFavorite(item)
                                       }}
-                                      className={`p-1.5 rounded-lg border transition-all ${
-                                        favorited ? 'bg-rose-500/10 border-rose-500/30 text-rose-500' : 'bg-slate-950 border-slate-800 text-slate-500 hover:text-rose-400'
-                                      }`}
+                                      className={`p-1.5 rounded-lg border transition-all ${favorited ? 'bg-rose-500/10 border-rose-500/30 text-rose-500' : 'bg-slate-950 border-slate-800 text-slate-500 hover:text-rose-400'
+                                        }`}
                                     >
                                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
@@ -755,9 +748,8 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                         e.stopPropagation()
                                         favorited ? removeFavorite(item.id, item.type) : addFavorite(item)
                                       }}
-                                      className={`p-1.5 rounded-lg border transition-all ${
-                                        favorited ? 'bg-rose-500/10 border-rose-500/30 text-rose-500' : 'bg-slate-950 border-slate-800 text-slate-500 hover:text-rose-400'
-                                      }`}
+                                      className={`p-1.5 rounded-lg border transition-all ${favorited ? 'bg-rose-500/10 border-rose-500/30 text-rose-500' : 'bg-slate-950 border-slate-800 text-slate-500 hover:text-rose-400'
+                                        }`}
                                     >
                                       <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
