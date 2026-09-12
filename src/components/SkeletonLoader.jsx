@@ -39,3 +39,9 @@ export function SkeletonDetails() {
         {/* Image poster skeleton */}
         <div className="w-full md:w-64 aspect-[2/3] md:h-96 rounded-2xl bg-slate-800/50 shrink-0"></div>
         
+{/* Text information skeleton */}
+        <div className="flex-1 space-y-6">
+          <div>
+            <div className="h-10 w-2/3 rounded-xl bg-slate-800/50 mb-3"></div>
+            <div className="h-5 w-1/3 rounded-md bg-slate-800/30"></div>
+          </div>
