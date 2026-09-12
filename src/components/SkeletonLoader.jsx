@@ -9,7 +9,7 @@ export function SkeletonCard() {
         {/* Subtitle Placeholder */}
         <div className="h-4 w-1/2 rounded bg-slate-800/30"></div>
       </div>
-      
+
       {/* Footer Placeholder */}
       <div className="flex items-center justify-between mt-4">
         <div className="h-4 w-12 rounded bg-slate-800/30"></div>
@@ -34,12 +34,12 @@ export function SkeletonDetails() {
     <div className="max-w-4xl mx-auto p-4 md:p-6 bg-slate-900/30 border border-slate-800/40 rounded-3xl shimmer relative overflow-hidden">
       {/* Back button skeleton */}
       <div className="h-8 w-24 rounded-lg bg-slate-800/50 mb-8"></div>
-      
+
       <div className="flex flex-col md:flex-row gap-8">
         {/* Image poster skeleton */}
         <div className="w-full md:w-64 aspect-[2/3] md:h-96 rounded-2xl bg-slate-800/50 shrink-0"></div>
-        
-{/* Text information skeleton */}
+
+        {/* Text information skeleton */}
         <div className="flex-1 space-y-6">
           <div>
             <div className="h-10 w-2/3 rounded-xl bg-slate-800/50 mb-3"></div>
