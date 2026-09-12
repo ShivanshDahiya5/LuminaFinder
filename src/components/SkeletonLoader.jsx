@@ -57,3 +57,13 @@ export function SkeletonDetails() {
             <div className="h-4 w-full rounded bg-slate-800/30"></div>
             <div className="h-4 w-5/6 rounded bg-slate-800/30"></div>
           </div>
+
+          <div className="flex gap-4 pt-4">
+            <div className="h-10 w-36 rounded-xl bg-slate-800/50"></div>
+            <div className="h-10 w-10 rounded-xl bg-slate-800/50"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
