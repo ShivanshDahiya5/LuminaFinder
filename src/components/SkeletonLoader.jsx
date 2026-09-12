@@ -7,3 +7,14 @@ export function SkeletonCard() {
         {/* Title Placeholder */}
         <div className="h-5 w-3/4 rounded bg-slate-800/50 mb-2"></div>
         {/* Subtitle Placeholder */}
+        <div className="h-4 w-1/2 rounded bg-slate-800/30"></div>
+      </div>
+      
+      {/* Footer Placeholder */}
+      <div className="flex items-center justify-between mt-4">
+        <div className="h-4 w-12 rounded bg-slate-800/30"></div>
+        <div className="h-8 w-8 rounded-lg bg-slate-800/50"></div>
+      </div>
+    </div>
+  )
+}
