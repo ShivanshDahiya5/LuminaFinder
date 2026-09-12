@@ -57,3 +57,14 @@ router.post('/register', async (req, res) => {
 
     // Sign JWT token
     const token = jwt.sign(userPayload, JWT_SECRET, { expiresIn: '7d' });
+
+    return res.status(201).json({
+      message: 'Account created successfully!',
+      user: userPayload,
+      token
+    });
+  } catch (error) {
+    console.error('Registration error:', error);
+    return res.status(500).json({ error: 'Failed to register user. Please try again.' });
+  }
+});
