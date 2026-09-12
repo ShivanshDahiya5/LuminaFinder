@@ -28,3 +28,14 @@ export function SkeletonGrid({ count = 8 }) {
     </div>
   )
 }
+
+export function SkeletonDetails() {
+  return (
+    <div className="max-w-4xl mx-auto p-4 md:p-6 bg-slate-900/30 border border-slate-800/40 rounded-3xl shimmer relative overflow-hidden">
+      {/* Back button skeleton */}
+      <div className="h-8 w-24 rounded-lg bg-slate-800/50 mb-8"></div>
+      
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* Image poster skeleton */}
+        <div className="w-full md:w-64 aspect-[2/3] md:h-96 rounded-2xl bg-slate-800/50 shrink-0"></div>
+        
