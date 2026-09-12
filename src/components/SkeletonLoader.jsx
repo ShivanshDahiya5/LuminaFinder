@@ -51,3 +51,9 @@ export function SkeletonDetails() {
             <div className="h-6 w-16 rounded-full bg-slate-800/50"></div>
             <div className="h-6 w-16 rounded-full bg-slate-800/50"></div>
           </div>
+
+          <div className="space-y-3 pt-4 border-t border-slate-800/50">
+            <div className="h-4 w-full rounded bg-slate-800/30"></div>
+            <div className="h-4 w-full rounded bg-slate-800/30"></div>
+            <div className="h-4 w-5/6 rounded bg-slate-800/30"></div>
+          </div>
