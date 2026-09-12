@@ -45,3 +45,15 @@ router.post('/register', async (req, res) => {
 
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert new user
+    const result = await db.run(
+      'INSERT INTO users (email, username, password_hash) VALUES (?, ?, ?)',
+      [email.toLowerCase().trim(), username.trim(), hashedPassword]
+    );
+
+    const userId = result.lastID;
+    const userPayload = { id: userId, email: email.toLowerCase().trim(), username: username.trim() };
+
+    // Sign JWT token
+    const token = jwt.sign(userPayload, JWT_SECRET, { expiresIn: '7d' });
