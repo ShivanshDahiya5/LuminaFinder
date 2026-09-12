@@ -34,3 +34,14 @@ router.post('/register', async (req, res) => {
     if (password.length < 6) {
       return res.status(400).json({ error: 'Password must be at least 6 characters long.' });
     }
+
+    const db = await getDb();
+
+    // Check if user already exists
+    const existingUser = await db.get('SELECT * FROM users WHERE email = ?', [email.toLowerCase().trim()]);
+    if (existingUser) {
+      return res.status(409).json({ error: 'An account with this email address already exists.' });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
