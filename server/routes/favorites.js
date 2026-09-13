@@ -58,3 +58,22 @@ router.post('/', async (req, res) => {
     return res.status(500).json({ error: 'Failed to add item to favorites.' });
   }
 });
+
+router.delete('/:type/:id', async (req, res) => {
+  try {
+    const { type, id } = req.params;
+
+    const db = await getDb();
+    await db.run(
+      'DELETE FROM favorites WHERE user_id = ? AND media_id = ? AND type = ?',
+      [req.user.id, String(id), type]
+    );
+
+    return res.json({ message: 'Removed from library favorites.', id, type });
+  } catch (error) {
+    console.error('Remove favorite error:', error);
+    return res.status(500).json({ error: 'Failed to remove favorite.' });
+  }
+});
+
+export default router;
