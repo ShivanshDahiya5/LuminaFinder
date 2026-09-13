@@ -102,3 +102,14 @@ const user = await db.get('SELECT * FROM users WHERE email = ?', [email.toLowerC
     return res.status(500).json({ error: 'Failed to log in. Please try again.' });
   }
 });
+
+router.get('/me', authenticateToken, async (req, res) => {
+  try {
+    const db = await getDb();
+    const user = await db.get('SELECT id, email, username, created_at FROM users WHERE id = ?', [req.user.id]);
+    
+    if (!user) {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+
+    const favoritesCountObj = await db.get('SELECT COUNT(*) as count FROM favorites WHERE user_id = ?', [user.id]);
