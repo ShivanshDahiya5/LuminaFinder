@@ -15,3 +15,22 @@ router.get('/', async (req, res) => {
       [req.user.id]
     );
 
+    const favorites = rows.map(row => ({
+      dbId: row.id,
+      id: row.media_id,
+      type: row.type,
+      title: row.title,
+      subtitle: row.subtitle || '',
+      image: row.image || null,
+      rating: row.rating,
+      genres: row.genres ? JSON.parse(row.genres) : [],
+      description: row.description || '',
+      addedAt: row.added_at
+    }));
+
+    return res.json(favorites);
+  } catch (error) {
+    console.error('Fetch favorites error:', error);
+    return res.status(500).json({ error: 'Failed to fetch favorites.' });
+  }
+});
