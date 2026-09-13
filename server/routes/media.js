@@ -62,3 +62,33 @@ async function searchBollywoodViaWikipedia(query) {
       }
     }
   }
+
+    if (filmTitleSet.size === 0) return [];
+
+  // Fetch REST summaries for all candidate film pages in parallel
+  const summaries = await Promise.allSettled(
+    [...filmTitleSet].slice(0, 10).map(title => {
+      const encoded = encodeURIComponent(title.replace(/ /g, '_'));
+      return fetchWithTimeout(`${WIKI_SUMMARY_BASE}/${encoded}`, 5000);
+    })
+  );
+
+  const results = [];
+  for (const s of summaries) {
+    if (s.status !== 'fulfilled' || !s.value || s.value.type === 'disambiguation') continue;
+    const page = s.value;
+    const extract = page.extract || '';
+    const desc = page.description || '';
+
+    // Must be clearly a film: description says so, or title has (YYYY film) pattern
+    const isFilmDesc = /\b(film|movie)\b/i.test(desc);
+    const isFilmTitle = /\(\d{4}\s*film\)|\(film\)|\(movie\)/i.test(page.title || '');
+    if (!isFilmDesc && !isFilmTitle) continue;
+
+    // Must be Indian/Bollywood/Hindi
+    const isIndian = /\b(Indian|Bollywood|Hindi|Kannada|Tamil|Telugu|Malayalam|Marathi|Punjabi)\b/i.test(extract + desc);
+    if (!isIndian) continue;
+
+    // Extract year from title like "Dangal (2016 film)" or description
+    const yearMatch = (page.title || '').match(/\((\d{4})/) || (page.description || '').match(/(\d{4})/);
+    const year = yearMatch ? yearMatch[1] : 'N/A';
