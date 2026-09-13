@@ -34,3 +34,14 @@ router.get('/', async (req, res) => {
     return res.status(500).json({ error: 'Failed to fetch favorites.' });
   }
 });
+
+router.post('/', async (req, res) => {
+  try {
+    const { id, type, title, subtitle, image, rating, genres, description } = req.body;
+
+    if (!id || !type || !title) {
+      return res.status(400).json({ error: 'Missing required media fields (id, type, title).' });
+    }
+
+    const db = await getDb();
+    const genresJson = JSON.stringify(genres || []);
