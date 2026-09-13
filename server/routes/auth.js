@@ -91,3 +91,14 @@ const user = await db.get('SELECT * FROM users WHERE email = ?', [email.toLowerC
 
     const userPayload = { id: user.id, email: user.email, username: user.username };
     const token = jwt.sign(userPayload, JWT_SECRET, { expiresIn: '7d' });
+
+    return res.json({
+      message: 'Logged in successfully!',
+      user: userPayload,
+      token
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    return res.status(500).json({ error: 'Failed to log in. Please try again.' });
+  }
+});
