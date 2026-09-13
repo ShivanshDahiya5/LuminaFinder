@@ -79,3 +79,15 @@ router.post('/login', async (req, res) => {
 
     const db = await getDb();
 
+const user = await db.get('SELECT * FROM users WHERE email = ?', [email.toLowerCase().trim()]);
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid email or password.' });
+    }
+
+    const validPassword = await bcrypt.compare(password, user.password_hash);
+    if (!validPassword) {
+      return res.status(401).json({ error: 'Invalid email or password.' });
+    }
+
+    const userPayload = { id: user.id, email: user.email, username: user.username };
+    const token = jwt.sign(userPayload, JWT_SECRET, { expiresIn: '7d' });
