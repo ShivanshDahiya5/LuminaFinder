@@ -113,3 +113,17 @@ router.get('/me', authenticateToken, async (req, res) => {
     }
 
     const favoritesCountObj = await db.get('SELECT COUNT(*) as count FROM favorites WHERE user_id = ?', [user.id]);
+
+    return res.json({
+      user: {
+        ...user,
+        favoritesCount: favoritesCountObj ? favoritesCountObj.count : 0
+      }
+    });
+  } catch (error) {
+    console.error('Fetch user error:', error);
+    return res.status(500).json({ error: 'Failed to fetch user data.' });
+  }
+});
+
+export default router;
