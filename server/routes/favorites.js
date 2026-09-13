@@ -45,3 +45,16 @@ router.post('/', async (req, res) => {
 
     const db = await getDb();
     const genresJson = JSON.stringify(genres || []);
+
+    await db.run(
+      `INSERT OR REPLACE INTO favorites (user_id, media_id, type, title, subtitle, image, rating, genres, description) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [req.user.id, String(id), type, title, subtitle || '', image || null, rating || null, genresJson, description || '']
+    );
+
+    return res.status(201).json({ message: 'Added to library favorites!', id: String(id), type });
+  } catch (error) {
+    console.error('Add favorite error:', error);
+    return res.status(500).json({ error: 'Failed to add item to favorites.' });
+  }
+});
