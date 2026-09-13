@@ -68,3 +68,14 @@ router.post('/register', async (req, res) => {
     return res.status(500).json({ error: 'Failed to register user. Please try again.' });
   }
 });
+
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email and password are required.' });
+    }
+
+    const db = await getDb();
+
