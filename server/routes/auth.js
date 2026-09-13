@@ -79,7 +79,7 @@ router.post('/login', async (req, res) => {
 
     const db = await getDb();
 
-const user = await db.get('SELECT * FROM users WHERE email = ?', [email.toLowerCase().trim()]);
+    const user = await db.get('SELECT * FROM users WHERE email = ?', [email.toLowerCase().trim()]);
     if (!user) {
       return res.status(401).json({ error: 'Invalid email or password.' });
     }
@@ -107,7 +107,7 @@ router.get('/me', authenticateToken, async (req, res) => {
   try {
     const db = await getDb();
     const user = await db.get('SELECT id, email, username, created_at FROM users WHERE id = ?', [req.user.id]);
-    
+
     if (!user) {
       return res.status(404).json({ error: 'User not found.' });
     }
