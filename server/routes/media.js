@@ -302,3 +302,70 @@ router.get('/movies/search', async (req, res) => {
         }
       }
     }
+
+        // Process TVMaze Shows — filter by country code when a specific region is selected
+    const tvmazeRes = allResults[tvmazeIdx];
+    if (tvmazeRes.status === 'fulfilled' && Array.isArray(tvmazeRes.value)) {
+      for (const item of tvmazeRes.value) {
+        if (!item.show) continue;
+        // Country filter: when India selected, prefer shows from IN or with Hindi language
+        if (!isAll && countryCode) {
+          const showCountry = (
+            item.show.network?.country?.code ||
+            item.show.webChannel?.country?.code ||
+            ''
+          ).toLowerCase();
+          const showLang = (item.show.language || '').toLowerCase();
+          const isIndianShow = isIndia && (showCountry === 'in' || showLang === 'hindi' || showLang === 'hi');
+          // For non-India specific regions, filter by country match; allow global channels (no country)
+          if (!isIndianShow && showCountry && showCountry !== countryCode) continue;
+        }
+        const norm = normalizeTVMazeShow(item);
+        const key = norm.title.toLowerCase().trim();
+        if (!titleSeen.has(key)) {
+          titleSeen.add(key);
+          results.push(norm);
+        }
+      }
+    }
+
+    return res.json(results);
+  } catch (error) {
+    console.error('Movie search error:', error);
+    return res.status(500).json({ error: 'Failed to fetch movies worldwide.' });
+  }
+});
+
+/**
+ * GET /api/movies/:id
+ */
+router.get('/movies/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id.startsWith('tvmaze_')) {
+      const realId = id.replace('tvmaze_', '');
+      const showData = await fetchWithTimeout(`${TVMAZE_BASE}/shows/${realId}?embed=cast`);
+      if (!showData) return res.status(404).json({ error: 'Movie/Show not found' });
+
+      return res.json({
+        id,
+        title: showData.name,
+        subtitle: showData.premiered ? showData.premiered.split('-')[0] : 'N/A',
+        image: showData.image?.original || showData.image?.medium || null,
+        rating: showData.rating?.average || null,
+        type: 'movie',
+        genres: showData.genres || [],
+        description: showData.summary ? showData.summary.replace(/<[^>]*>/g, '') : 'No summary available.',
+        premiered: showData.premiered || 'Unknown',
+        status: showData.status || 'Released',
+        runtime: showData.runtime ? `${showData.runtime} min` : 'N/A',
+        network: showData.network?.name || showData.webChannel?.name || 'Worldwide Network',
+        officialSite: showData.officialSite || null,
+        cast: showData._embedded?.cast?.slice(0, 10).map(member => ({
+          name: member.person.name,
+          character: member.character.name,
+          image: member.person.image?.medium || member.person.image?.original || null
+        })) || []
+      });
+    }
