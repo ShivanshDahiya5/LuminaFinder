@@ -493,3 +493,59 @@ router.get('/books/search', async (req, res) => {
     return res.status(500).json({ error: 'Failed to fetch books worldwide.' });
   }
 });
+
+
+router.get('/books/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (id.startsWith('gbook_')) {
+      const realId = id.replace('gbook_', '');
+      const bookData = await fetchWithTimeout(`${GOOGLE_BOOKS_BASE}/${realId}`);
+      if (!bookData) return res.status(404).json({ error: 'Book details not found' });
+
+      const norm = normalizeGoogleBook(bookData);
+      return res.json(norm);
+    }
+
+    if (id.startsWith('openlib_')) {
+      const realId = id.replace('openlib_', '');
+      const workData = await fetchWithTimeout(`${OPEN_LIBRARY_BASE}/works/${realId}.json`);
+      if (!workData) return res.status(404).json({ error: 'Book details not found' });
+
+      const coverUrl = workData.covers && workData.covers.length > 0 && workData.covers[0] > 0
+        ? `https://covers.openlibrary.org/b/id/${workData.covers[0]}-L.jpg`
+        : null;
+
+      let descriptionText = 'No description available.';
+      if (workData.description) {
+        descriptionText = typeof workData.description === 'string'
+          ? workData.description
+          : (workData.description.value || 'No description available.');
+      }
+
+      return res.json({
+        id,
+        title: workData.title,
+        subtitle: workData.subtitle || '',
+        authors: ['Open Library Author'],
+        image: coverUrl,
+        rating: null,
+        type: 'book',
+        genres: workData.subjects ? workData.subjects.slice(0, 5) : ['Literature'],
+        description: descriptionText.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1'),
+        publisher: 'Open Library',
+        publishedDate: workData.first_publish_date || 'Unknown',
+        pageCount: 'N/A',
+        previewLink: `https://openlibrary.org/works/${realId}`,
+        infoLink: `https://openlibrary.org/works/${realId}`,
+        buyLink: null
+      });
+    }
+
+    return res.status(404).json({ error: 'Book ID format unrecognised.' });
+  } catch (error) {
+    console.error('Book detail error:', error);
+    return res.status(500).json({ error: 'Failed to fetch book details.' });
+  }
+});
