@@ -192,8 +192,8 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
               id="type-movie-btn"
               onClick={() => handleTypeChange('movie')}
               className={`flex items-center justify-center gap-2 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${mediaType === 'movie'
-                  ? 'bg-slate-900 border border-slate-800 text-purple-400 shadow-md'
-                  : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-slate-900 border border-slate-800 text-purple-400 shadow-md'
+                : 'text-slate-400 hover:text-slate-200'
                 }`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -205,8 +205,8 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
               id="type-book-btn"
               onClick={() => handleTypeChange('book')}
               className={`flex items-center justify-center gap-2 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${mediaType === 'book'
-                  ? 'bg-slate-900 border border-slate-800 text-blue-400 shadow-md'
-                  : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-slate-900 border border-slate-800 text-blue-400 shadow-md'
+                : 'text-slate-400 hover:text-slate-200'
                 }`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -377,8 +377,8 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                           )}
 
                           <span className={`absolute top-2 right-2 px-2 py-0.5 rounded-lg text-[9px] font-bold uppercase tracking-wider border ${item.type === 'movie'
-                              ? 'bg-purple-950/90 text-purple-300 border-purple-800/40'
-                              : 'bg-blue-950/90 text-blue-300 border-blue-800/40'
+                            ? 'bg-purple-950/90 text-purple-300 border-purple-800/40'
+                            : 'bg-blue-950/90 text-blue-300 border-blue-800/40'
                             }`}>
                             {item.source || (item.type === 'movie' ? 'Movie' : 'Book')}
                           </span>
@@ -410,8 +410,8 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                                   addFavorite(item);
                                 }
                               }} className={`p-1.5 rounded-lg border transition-all duration-300 hover:scale-110 active:scale-95 ${favorited
-                                  ? 'bg-rose-500/10 border-rose-500/30 text-rose-500'
-                                  : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-rose-400 hover:border-rose-500/30'
+                                ? 'bg-rose-500/10 border-rose-500/30 text-rose-500'
+                                : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-rose-400 hover:border-rose-500/30'
                                 }`}
                               title={favorited ? 'Remove from library' : 'Save to library'}
                             >
@@ -476,8 +476,8 @@ function SearchTab({ initialShowTrending = false, isFavorite, addFavorite, remov
                         key={cat.id}
                         onClick={() => setTrendingCategory(cat.id)}
                         className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${trendingCategory === cat.id
-                            ? 'bg-gradient-to-r from-amber-500/20 to-purple-500/20 border border-amber-500/40 text-amber-300 shadow-sm'
-                            : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                          ? 'bg-gradient-to-r from-amber-500/20 to-purple-500/20 border border-amber-500/40 text-amber-300 shadow-sm'
+                          : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
                           }`}
                       >
                         {cat.label}
