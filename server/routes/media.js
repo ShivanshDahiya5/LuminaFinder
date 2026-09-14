@@ -369,3 +369,75 @@ router.get('/movies/:id', async (req, res) => {
         })) || []
       });
     }
+
+    if (id.startsWith('itunes_')) {
+      const realId = id.replace('itunes_', '');
+      const itunesData = await fetchWithTimeout(`${ITUNES_BASE}?id=${realId}&entity=movie`);
+      if (itunesData?.results && itunesData.results.length > 0) {
+        const item = itunesData.results[0];
+        const norm = normalizeITunesMovie(item);
+        return res.json({
+          ...norm,
+          status: 'Released',
+          runtime: item.trackTimeMillis ? `${Math.round(item.trackTimeMillis / 60000)} min` : 'N/A',
+          network: item.studio || item.collectionArtistName || 'Global Studio',
+          officialSite: item.trackViewUrl || null,
+          cast: []
+        });
+      }
+    }
+
+    if (id.startsWith('wiki_')) {
+      const pageId = id.replace('wiki_', '');
+      // Fetch Wikipedia summary by pageid
+      const wikiUrl = `${WIKI_SEARCH_BASE}?action=query&pageids=${pageId}&prop=info|extracts|pageimages&exintro=true&piprop=original&format=json&origin=*`;
+      const wikiData = await fetchWithTimeout(wikiUrl, 6000);
+      const page = wikiData?.query?.pages?.[pageId];
+      if (page && page.title) {
+        // Also fetch REST summary for better image
+        const encoded = encodeURIComponent(page.title.replace(/ /g, '_'));
+        const summaryData = await fetchWithTimeout(`${WIKI_SUMMARY_BASE}/${encoded}`, 5000);
+
+        const extract = summaryData?.extract || page.extract?.replace(/<[^>]*>/g, '') || 'No description available.';
+        const image = summaryData?.originalimage?.source || summaryData?.thumbnail?.source ||
+          (page.original ? page.original.source : null);
+        const yearMatch = (page.title || '').match(/\((\d{4})/) || extract.match(/(\d{4})/);
+        const year = yearMatch ? yearMatch[1] : 'N/A';
+
+        const genreHints = [];
+        if (/action/i.test(extract)) genreHints.push('Action');
+        if (/comedy/i.test(extract)) genreHints.push('Comedy');
+        if (/drama/i.test(extract)) genreHints.push('Drama');
+        if (/romance/i.test(extract)) genreHints.push('Romance');
+        if (/thriller/i.test(extract)) genreHints.push('Thriller');
+        if (/biograph/i.test(extract)) genreHints.push('Biography');
+        if (genreHints.length === 0) genreHints.push('Bollywood');
+
+        const cleanTitle = (page.title || '').replace(/\s*\(\d{4}[^)]*\)/, '').replace(/\s*\([^)]*film[^)]*\)/i, '').trim();
+
+        return res.json({
+          id,
+          title: cleanTitle,
+          subtitle: year,
+          image,
+          rating: null,
+          type: 'movie',
+          genres: genreHints,
+          description: extract,
+          premiered: year,
+          status: 'Released',
+          runtime: 'N/A',
+          network: 'Indian Cinema',
+          officialSite: summaryData?.content_urls?.desktop?.page || `https://en.wikipedia.org/?curid=${pageId}`,
+          cast: [],
+          source: '🎬 Bollywood'
+        });
+      }
+    }
+
+    return res.status(404).json({ error: 'Media item details not found.' });
+  } catch (error) {
+    console.error('Movie detail error:', error);
+    return res.status(500).json({ error: 'Failed to fetch movie details.' });
+  }
+});
