@@ -7,3 +7,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 let dbPromise = null;
+
+export async function getDb() {
+  if (!dbPromise) {
+    dbPromise = (async () => {
+      const db = await open({
+        filename: path.join(__dirname, 'database.sqlite'),
+        driver: sqlite3.Database
+      });
+
+      // Enable foreign keys
+      await db.run('PRAGMA foreign_keys = ON');
