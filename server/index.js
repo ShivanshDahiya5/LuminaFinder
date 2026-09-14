@@ -34,5 +34,3 @@ const server = app.listen(PORT, () => {
 
 // Keep process active in non-interactive shell environments
 setInterval(() => {}, 3600000);
-
-
