@@ -126,3 +126,54 @@ async function searchBollywoodViaWikipedia(query) {
 
   return results;
 }
+
+/**
+ * Normalizes iTunes Movie Object
+ */
+function normalizeITunesMovie(item) {
+  const highResImage = item.artworkUrl100
+    ? item.artworkUrl100.replace('100x100bb', '600x600bb')
+    : null;
+  const releaseYear = item.releaseDate ? item.releaseDate.split('-')[0] : 'N/A';
+  
+  return {
+    id: `itunes_${item.trackId}`,
+    title: item.trackName || item.collectionName,
+    subtitle: `${releaseYear} • ${item.country || 'Global'}`,
+    image: highResImage,
+    rating: item.contentAdvisoryRating ? item.contentAdvisoryRating : 'NR',
+    type: 'movie',
+    genres: item.primaryGenreName ? [item.primaryGenreName] : ['Movie'],
+    description: item.longDescription || item.shortDescription || 'Global motion picture release.',
+    originCountry: item.country || 'Global',
+    releaseYear: releaseYear,
+    previewUrl: item.previewUrl || null,
+    link: item.trackViewUrl || null,
+    source: 'iTunes'
+  };
+}
+
+/**
+ * Normalizes TVMaze Show Object
+ */
+function normalizeTVMazeShow(item) {
+  const show = item.show;
+  const releaseYear = show.premiered ? show.premiered.split('-')[0] : 'N/A';
+  const country = show.network?.country?.name || show.webChannel?.country?.name || 'Global';
+
+  return {
+    id: `tvmaze_${show.id}`,
+    title: show.name,
+    subtitle: `${releaseYear} • ${country}`,
+    image: show.image?.original || show.image?.medium || null,
+    rating: show.rating?.average || null,
+    type: 'movie',
+    genres: show.genres || ['TV & Film'],
+    description: show.summary ? show.summary.replace(/<[^>]*>/g, '') : 'No summary available.',
+    originCountry: country,
+    releaseYear: releaseYear,
+    previewUrl: null,
+    link: show.officialSite || show.url || null,
+    source: 'TVMaze'
+  };
+}
