@@ -549,3 +549,86 @@ router.get('/books/:id', async (req, res) => {
     return res.status(500).json({ error: 'Failed to fetch book details.' });
   }
 });
+
+
+/**
+ * GET /api/trending?category=...
+ * Worldwide trending showcases with category filtering & high quality media metadata
+ */
+router.get('/trending', async (req, res) => {
+  try {
+    const { category = 'all' } = req.query;
+
+    const moviesUrl = `${ITUNES_BASE}?media=movie&entity=movie&term=blockbuster&limit=12`;
+    const tvUrl = `${TVMAZE_BASE}/shows?page=0`;
+    const booksUrl = `${GOOGLE_BOOKS_BASE}?q=subject:fiction&orderBy=newest&maxResults=12`;
+    const animeUrl = `${TVMAZE_BASE}/search/shows?q=anime`;
+
+    const [moviesRes, tvRes, booksRes, animeRes] = await Promise.allSettled([
+      fetchWithTimeout(moviesUrl),
+      fetchWithTimeout(tvUrl),
+      fetchWithTimeout(booksUrl),
+      fetchWithTimeout(animeUrl)
+    ]);
+
+    const movies = [];
+    const seenMovieTitles = new Set();
+
+    if (moviesRes.status === 'fulfilled' && moviesRes.value?.results) {
+      moviesRes.value.results.forEach(m => {
+        const norm = normalizeITunesMovie(m);
+        if (!seenMovieTitles.has(norm.title.toLowerCase())) {
+          seenMovieTitles.add(norm.title.toLowerCase());
+          movies.push(norm);
+        }
+      });
+    }
+
+    if (tvRes.status === 'fulfilled' && Array.isArray(tvRes.value)) {
+      tvRes.value.slice(0, 10).forEach(show => {
+        const norm = normalizeTVMazeShow({ show });
+        if (!seenMovieTitles.has(norm.title.toLowerCase())) {
+          seenMovieTitles.add(norm.title.toLowerCase());
+          movies.push(norm);
+        }
+      });
+    }
+
+    const books = [];
+    const seenBookTitles = new Set();
+
+    if (booksRes.status === 'fulfilled' && booksRes.value?.items) {
+      booksRes.value.items.forEach(b => {
+        const norm = normalizeGoogleBook(b);
+        if (!seenBookTitles.has(norm.title.toLowerCase())) {
+          seenBookTitles.add(norm.title.toLowerCase());
+          books.push(norm);
+        }
+      });
+    }
+
+    const anime = [];
+    if (animeRes.status === 'fulfilled' && Array.isArray(animeRes.value)) {
+      animeRes.value.slice(0, 8).forEach(item => {
+        if (item.show) {
+          anime.push(normalizeTVMazeShow(item));
+        }
+      });
+    }
+
+    // Curated Spotlight Hero item
+    const heroSpotlight = movies[0] || books[0] || null;
+
+    return res.json({
+      heroSpotlight,
+      movies: movies.slice(0, 12),
+      books: books.slice(0, 12),
+      anime: anime.slice(0, 8)
+    });
+  } catch (error) {
+    console.error('Trending fetch error:', error);
+    return res.json({ heroSpotlight: null, movies: [], books: [], anime: [] });
+  }
+});
+
+export default router;
