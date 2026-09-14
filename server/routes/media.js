@@ -92,3 +92,37 @@ async function searchBollywoodViaWikipedia(query) {
     // Extract year from title like "Dangal (2016 film)" or description
     const yearMatch = (page.title || '').match(/\((\d{4})/) || (page.description || '').match(/(\d{4})/);
     const year = yearMatch ? yearMatch[1] : 'N/A';
+
+    // Determine genre tags from description/extract
+    const genreHints = [];
+    if (/action/i.test(extract)) genreHints.push('Action');
+    if (/comedy/i.test(extract)) genreHints.push('Comedy');
+    if (/drama/i.test(extract)) genreHints.push('Drama');
+    if (/romance/i.test(extract)) genreHints.push('Romance');
+    if (/thriller/i.test(extract)) genreHints.push('Thriller');
+    if (/horror/i.test(extract)) genreHints.push('Horror');
+    if (/biograph/i.test(extract)) genreHints.push('Biography');
+    if (genreHints.length === 0) genreHints.push('Bollywood');
+
+    // Clean up display title (remove year disambiguation)
+    const cleanTitle = (page.title || '').replace(/\s*\(\d{4}[^)]*\)/, '').replace(/\s*\([^)]*film[^)]*\)/i, '').trim();
+
+    results.push({
+      id: `wiki_${page.pageid}`,
+      title: cleanTitle,
+      subtitle: `${year} • India`,
+      image: page.originalimage?.source || page.thumbnail?.source || null,
+      rating: null,
+      type: 'movie',
+      genres: genreHints,
+      description: extract.slice(0, 400) || page.description || 'Indian film.',
+      originCountry: 'India',
+      releaseYear: year,
+      previewUrl: null,
+      link: page.content_urls?.desktop?.page || null,
+      source: '🎬 Bollywood'
+    });
+  }
+
+  return results;
+}
