@@ -239,3 +239,66 @@ function normalizeOpenLibraryBook(item) {
     source: 'Open Library'
   };
 }
+
+/**
+ * GET /api/movies/search?q=...&region=...
+ * Worldwide Movie and TV Show multi-source search
+ */
+router.get('/movies/search', async (req, res) => {
+  try {
+    const { q, region } = req.query;
+    if (!q || !q.trim()) return res.json([]);
+
+    const query = q.trim();
+    const isIndia = region && region.toLowerCase() === 'in';
+    const isAll = !region || region === 'all';
+    const countryCode = !isAll ? region.toLowerCase() : null;
+
+    // Build iTunes fetch URLs — for 'all' we hit multiple storefronts in parallel
+    const itunesUrls = [];
+    if (isAll) {
+      // Search across major storefronts for broad worldwide results
+      ['us', 'gb', 'au'].forEach(cc => {
+        itunesUrls.push(`${ITUNES_BASE}?media=movie&entity=movie&term=${encodeURIComponent(query)}&country=${cc}&limit=15`);
+      });
+    } else {
+      itunesUrls.push(`${ITUNES_BASE}?media=movie&entity=movie&term=${encodeURIComponent(query)}&country=${countryCode}&limit=25`);
+    }
+
+    // TVMaze search (global, results filtered by country when region selected)
+    const tvmazeUrl = `${TVMAZE_BASE}/search/shows?q=${encodeURIComponent(query)}`;
+
+    const allFetchUrls = [...itunesUrls, tvmazeUrl];
+    const allResults = await Promise.allSettled(allFetchUrls.map(url => fetchWithTimeout(url)));
+
+    const results = [];
+    const titleSeen = new Set();
+    const tvmazeIdx = allFetchUrls.length - 1; // Last URL is TVMaze
+
+    // For India/Bollywood: use Wikipedia as the primary source (iTunes has no Bollywood catalog)
+    if (isIndia) {
+      const bollywoodResults = await searchBollywoodViaWikipedia(query);
+      for (const item of bollywoodResults) {
+        const key = item.title.toLowerCase().trim();
+        if (!titleSeen.has(key)) {
+          titleSeen.add(key);
+          results.push(item);
+        }
+      }
+    }
+
+    // Process iTunes results (all storefronts)
+    for (let i = 0; i < tvmazeIdx; i++) {
+      const res_ = allResults[i];
+      if (res_.status === 'fulfilled' && res_.value?.results) {
+        for (const item of res_.value.results) {
+          if (!item.trackId) continue;
+          const norm = normalizeITunesMovie(item);
+          const key = norm.title.toLowerCase().trim();
+          if (!titleSeen.has(key)) {
+            titleSeen.add(key);
+            results.push(norm);
+          }
+        }
+      }
+    }
