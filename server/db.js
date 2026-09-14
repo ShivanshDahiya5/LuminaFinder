@@ -30,3 +30,27 @@ export async function getDb() {
         );
       `);
 
+      // Create favorites table
+      await db.exec(`
+        CREATE TABLE IF NOT EXISTS favorites (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          user_id INTEGER NOT NULL,
+          media_id TEXT NOT NULL,
+          type TEXT NOT NULL,
+          title TEXT NOT NULL,
+          subtitle TEXT,
+          image TEXT,
+          rating REAL,
+          genres TEXT,
+          description TEXT,
+          added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+          FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+          UNIQUE(user_id, media_id, type)
+        );
+      `);
+
+      return db;
+    })();
+  }
+  return dbPromise;
+}
