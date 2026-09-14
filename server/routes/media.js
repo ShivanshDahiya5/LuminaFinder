@@ -441,3 +441,55 @@ router.get('/movies/:id', async (req, res) => {
     return res.status(500).json({ error: 'Failed to fetch movie details.' });
   }
 });
+
+router.get('/books/search', async (req, res) => {
+  try {
+    const { q, lang } = req.query;
+    if (!q || !q.trim()) return res.json([]);
+
+    const query = q.trim();
+    let googleUrl = `${GOOGLE_BOOKS_BASE}?q=${encodeURIComponent(query)}&maxResults=25`;
+    if (lang && lang !== 'all') {
+      googleUrl += `&langRestrict=${lang}`;
+    }
+
+    const openLibUrl = `${OPEN_LIBRARY_BASE}/search.json?q=${encodeURIComponent(query)}&limit=20`;
+
+    const [gbooksRes, openlibRes] = await Promise.allSettled([
+      fetchWithTimeout(googleUrl),
+      fetchWithTimeout(openLibUrl)
+    ]);
+
+    const results = [];
+    const titleSeen = new Set();
+
+    // Process Google Books (rich metadata & global publications)
+    if (gbooksRes.status === 'fulfilled' && gbooksRes.value?.items) {
+      for (const item of gbooksRes.value.items) {
+        const norm = normalizeGoogleBook(item);
+        const key = norm.title.toLowerCase().trim();
+        if (!titleSeen.has(key)) {
+          titleSeen.add(key);
+          results.push(norm);
+        }
+      }
+    }
+
+    // Process Open Library
+    if (openlibRes.status === 'fulfilled' && openlibRes.value?.docs) {
+      for (const item of openlibRes.value.docs) {
+        const norm = normalizeOpenLibraryBook(item);
+        const key = norm.title.toLowerCase().trim();
+        if (!titleSeen.has(key)) {
+          titleSeen.add(key);
+          results.push(norm);
+        }
+      }
+    }
+
+    return res.json(results);
+  } catch (error) {
+    console.error('Book search error:', error);
+    return res.status(500).json({ error: 'Failed to fetch books worldwide.' });
+  }
+});
