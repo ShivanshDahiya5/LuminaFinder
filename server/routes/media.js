@@ -177,3 +177,65 @@ function normalizeTVMazeShow(item) {
     source: 'TVMaze'
   };
 }
+
+/**
+ * Normalizes Google Book Object
+ */
+function normalizeGoogleBook(item) {
+  const info = item.volumeInfo || {};
+  const imageLinks = info.imageLinks || {};
+  const coverUrl = imageLinks.thumbnail
+    ? imageLinks.thumbnail.replace('http://', 'https://').replace('&edge=curl', '')
+    : (imageLinks.smallThumbnail ? imageLinks.smallThumbnail.replace('http://', 'https://') : null);
+
+  const authors = info.authors ? info.authors.join(', ') : 'Unknown Author';
+  const releaseYear = info.publishedDate ? info.publishedDate.split('-')[0] : 'N/A';
+
+  return {
+    id: `gbook_${item.id}`,
+    title: info.title,
+    subtitle: `${authors} (${releaseYear})`,
+    authors: info.authors || ['Unknown Author'],
+    image: coverUrl,
+    rating: info.averageRating || null,
+    type: 'book',
+    genres: info.categories ? info.categories.slice(0, 3) : ['Literature'],
+    description: info.description || info.subtitle || 'Worldwide published volume.',
+    publishedDate: info.publishedDate || 'Unknown',
+    publisher: info.publisher || 'Global Publisher',
+    pageCount: info.pageCount ? `${info.pageCount} pages` : 'N/A',
+    language: info.language ? info.language.toUpperCase() : 'Global',
+    previewLink: info.previewLink || info.infoLink || null,
+    infoLink: info.infoLink || null,
+    source: 'Google Books'
+  };
+}
+
+/**
+ * Normalizes Open Library Book Object
+ */
+function normalizeOpenLibraryBook(item) {
+  const workId = item.key ? item.key.replace('/works/', '') : String(item.cover_edition_key || Math.random());
+  const coverUrl = item.cover_i ? `https://covers.openlibrary.org/b/id/${item.cover_i}-L.jpg` : null;
+  const authors = item.author_name ? item.author_name.join(', ') : 'Unknown Author';
+  const releaseYear = item.first_publish_year ? String(item.first_publish_year) : 'N/A';
+
+  return {
+    id: `openlib_${workId}`,
+    title: item.title,
+    subtitle: `${authors} (${releaseYear})`,
+    authors: item.author_name || ['Unknown Author'],
+    image: coverUrl,
+    rating: item.ratings_average ? parseFloat(item.ratings_average.toFixed(1)) : null,
+    type: 'book',
+    genres: item.subject ? item.subject.slice(0, 3) : ['General'],
+    description: item.first_sentence ? item.first_sentence[0] : 'Open Library public catalog record.',
+    publishedDate: releaseYear,
+    publisher: 'Open Library',
+    pageCount: 'N/A',
+    language: item.language ? item.language[0]?.toUpperCase() : 'Global',
+    previewLink: `https://openlibrary.org${item.key}`,
+    infoLink: `https://openlibrary.org${item.key}`,
+    source: 'Open Library'
+  };
+}
