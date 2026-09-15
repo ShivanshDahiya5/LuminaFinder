@@ -15,56 +15,23 @@ function AppContent() {
   const [route, setRoute] = useState({ path: '/', params: {} })
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
 
-  // Favorites State
+  // Favorites State — loaded from localStorage keyed by userId (token)
   const [favorites, setFavorites] = useState(() => {
-    try {
-      const saved = localStorage.getItem('media-favorites')
-      return saved ? JSON.parse(saved) : []
-    } catch {
-      return []
-    }
+    // On first load, fetch for the currently logged-in user (if any)
+    const session = (() => { try { return JSON.parse(localStorage.getItem('lumina_session') || 'null'); } catch { return null; } })();
+    return session ? fetchUserFavorites(session.id) : [];
   })
 
-  // Clear favorites state & storage (used on sign-out and before loading server copy)
-  const clearFavorites = () => {
-    setFavorites([])
-    localStorage.removeItem('media-favorites')
-  }
+  const clearFavorites = () => setFavorites([])
 
-  // Sync favorites with backend DB when logged in; clear them when logged out
+  // Reload favorites whenever the logged-in user changes
   useEffect(() => {
-    let active = true;
     if (token) {
-      // Clear any local/guest favourites before loading the user's server copy
-      setFavorites([]);
-      localStorage.removeItem('media-favorites');
-
-      fetchUserFavorites(token)
-        .then((backendFavs) => {
-          if (active && Array.isArray(backendFavs)) {
-            setFavorites(backendFavs);
-            localStorage.setItem('media-favorites', JSON.stringify(backendFavs));
-          }
-        })
-        .catch((err) => console.error('Error fetching backend favorites:', err));
+      setFavorites(fetchUserFavorites(token));
     } else {
-      // Token was removed (sign-out) — wipe the favourites
-      if (active) {
-        setFavorites([]);
-        localStorage.removeItem('media-favorites');
-      }
+      setFavorites([]);
     }
-    return () => {
-      active = false;
-    };
   }, [token]);
-
-  // Sync favorites to localStorage for offline / guest backup (only when not logged in)
-  useEffect(() => {
-    if (!token && favorites.length > 0) {
-      localStorage.setItem('media-favorites', JSON.stringify(favorites))
-    }
-  }, [favorites, token])
 
   // Route parsing function
   const parseRoute = () => {
@@ -106,33 +73,17 @@ function AppContent() {
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
-  // Helper functions to manage favorites
-  const addFavorite = async (item) => {
+  // Helper functions to manage favorites (localStorage, keyed by userId)
+  const addFavorite = (item) => {
     if (!favorites.some(f => String(f.id) === String(item.id) && f.type === item.type)) {
-      const updated = [...favorites, item]
-      setFavorites(updated)
-
-      if (token) {
-        try {
-          await addFavoriteApi(item, token)
-        } catch (e) {
-          console.error('Failed to sync favorite to DB:', e)
-        }
-      }
+      addFavoriteApi(item, token);
+      setFavorites(fetchUserFavorites(token));
     }
   }
 
-  const removeFavorite = async (id, type) => {
-    const updated = favorites.filter(f => !(String(f.id) === String(id) && f.type === type))
-    setFavorites(updated)
-
-    if (token) {
-      try {
-        await removeFavoriteApi(type, id, token)
-      } catch (e) {
-        console.error('Failed to remove favorite from DB:', e)
-      }
-    }
+  const removeFavorite = (id, type) => {
+    removeFavoriteApi(type, id, token);
+    setFavorites(fetchUserFavorites(token));
   }
 
   const isFavorite = (id, type) => {
