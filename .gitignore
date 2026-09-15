@@ -1,3 +1,10 @@
+# Environment
+.env
+.env.local
+
+# Local SQLite database (replaced by Neon in production)
+server/database.sqlite
+
 # Logs
 logs
 *.log

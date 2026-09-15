@@ -35,11 +35,12 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'Password must be at least 6 characters long.' });
     }
 
-    const db = await getDb();
+    const sql = getDb();
+    const normalizedEmail = email.toLowerCase().trim();
 
     // Check if user already exists
-    const existingUser = await db.get('SELECT * FROM users WHERE email = ?', [email.toLowerCase().trim()]);
-    if (existingUser) {
+    const existing = await sql`SELECT id FROM users WHERE email = ${normalizedEmail}`;
+    if (existing.length > 0) {
       return res.status(409).json({ error: 'An account with this email address already exists.' });
     }
 
@@ -47,15 +48,14 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Insert new user
-    const result = await db.run(
-      'INSERT INTO users (email, username, password_hash) VALUES (?, ?, ?)',
-      [email.toLowerCase().trim(), username.trim(), hashedPassword]
-    );
+    const result = await sql`
+      INSERT INTO users (email, username, password_hash)
+      VALUES (${normalizedEmail}, ${username.trim()}, ${hashedPassword})
+      RETURNING id
+    `;
 
-    const userId = result.lastID;
-    const userPayload = { id: userId, email: email.toLowerCase().trim(), username: username.trim() };
-
-    // Sign JWT token
+    const userId = result[0].id;
+    const userPayload = { id: userId, email: normalizedEmail, username: username.trim() };
     const token = jwt.sign(userPayload, JWT_SECRET, { expiresIn: '7d' });
 
     return res.status(201).json({
@@ -77,9 +77,10 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: 'Email and password are required.' });
     }
 
-    const db = await getDb();
+    const sql = getDb();
+    const rows = await sql`SELECT * FROM users WHERE email = ${email.toLowerCase().trim()}`;
+    const user = rows[0];
 
-    const user = await db.get('SELECT * FROM users WHERE email = ?', [email.toLowerCase().trim()]);
     if (!user) {
       return res.status(401).json({ error: 'Invalid email or password.' });
     }
@@ -105,19 +106,24 @@ router.post('/login', async (req, res) => {
 
 router.get('/me', authenticateToken, async (req, res) => {
   try {
-    const db = await getDb();
-    const user = await db.get('SELECT id, email, username, created_at FROM users WHERE id = ?', [req.user.id]);
+    const sql = getDb();
+    const userRows = await sql`
+      SELECT id, email, username, created_at FROM users WHERE id = ${req.user.id}
+    `;
+    const user = userRows[0];
 
     if (!user) {
       return res.status(404).json({ error: 'User not found.' });
     }
 
-    const favoritesCountObj = await db.get('SELECT COUNT(*) as count FROM favorites WHERE user_id = ?', [user.id]);
+    const countRows = await sql`
+      SELECT COUNT(*)::int AS count FROM favorites WHERE user_id = ${user.id}
+    `;
 
     return res.json({
       user: {
         ...user,
-        favoritesCount: favoritesCountObj ? favoritesCountObj.count : 0
+        favoritesCount: countRows[0]?.count ?? 0
       }
     });
   } catch (error) {
